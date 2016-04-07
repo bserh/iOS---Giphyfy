@@ -11,12 +11,22 @@ import UIKit
 class RandomGifViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var randomGifImageView: UIImageView!
+    @IBOutlet weak var shareFacebookButton: UIButton!
+    @IBOutlet weak var shareTwitterButton: UIButton!
     private var giphyImage = GiphyImage()
 
     //MARK: - Overrided Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        shareTwitterButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+        shareTwitterButton.titleLabel?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        shareTwitterButton.imageView?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        
+        shareFacebookButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+        shareFacebookButton.titleLabel?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        shareFacebookButton.imageView?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        
         loadRandomGif()
         // Do any additional setup after loading the view.
     }
@@ -29,6 +39,28 @@ class RandomGifViewController: UIViewController {
     //MARK: - Actions
     @IBAction func handleRandomButtonTapped(sender: UIButton) {
         loadRandomGif()
+    }
+    
+    @IBAction func handleShareTwitterButtonTapped(sender: UIButton) {
+        let twitterController = TwitterController()
+        
+        var message = SocialMessage()
+        message.initialText = "Here is the shared gif from #Giphyfy iOS app"
+        message.image = randomGifImageView.image
+        message.url = giphyImage.giphyImageUrl
+        
+        twitterController.postToSocialFrom(self, withMessage: message)
+    }
+    
+    @IBAction func handleShareFacebookButtonTapped(sender: UIButton) {
+        let facebookController = FacebookController()
+        
+        var message = SocialMessage()
+        message.initialText = "Here is the shared gif from #Giphyfy iOS app"
+        message.image = randomGifImageView.image
+        message.url = giphyImage.giphyImageUrl
+        
+        facebookController.postToSocialFrom(self, withMessage: message)
     }
     
     //MARK: - Custom Methods
@@ -47,7 +79,6 @@ class RandomGifViewController: UIViewController {
             
             if let dataDictionary = jsonArray["data"] as? [String: AnyObject] {
                 self.giphyImage.giphyImageUrl = dataDictionary["image_url"] as? String
-                self.giphyImage.giphyImageWidth = dataDictionary["image_width"] as? Int
             }
             
             self.renderGifImage()

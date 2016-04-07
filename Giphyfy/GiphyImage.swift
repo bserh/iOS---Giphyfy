@@ -8,8 +8,14 @@
 
 import Foundation
 
-public struct GiphyImage {
-    public var giphyImageUrl: String?
-    public var giphyImageWidth: Int?
-    public var giphyImageHeight: Int?
+struct GiphyImage {
+    //for thumb
+    var giphyImageUrl: String?
+    var giphyImageWidth: Int?
+    var giphyImageHeight: Int?
+    
+    //for original
+    var giphyOriginalImageUrl: String?
+    var giphyOriginalImageWidth: Int?
+    var giphyOriginalImageHeight: Int?
 }

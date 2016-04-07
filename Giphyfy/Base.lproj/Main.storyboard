@@ -19,32 +19,74 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hdY-Uh-AGN">
-                                <rect key="frame" x="20" y="20" width="560" height="531"/>
+                                <rect key="frame" x="20" y="28" width="560" height="515"/>
                                 <subviews>
+                                    <stackView opaque="NO" contentMode="bottom" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eYG-t6-Sbo">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddV-ce-V75">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Share to" image="Facebook">
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="handleShareFacebookButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="nTW-eu-TCu"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yiv-Lt-4qI">
+                                                <rect key="frame" x="280" y="0.0" width="280" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <size key="titleShadowOffset" width="1" height="1"/>
+                                                <state key="normal" title="Share to" image="Twitter">
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="handleShareTwitterButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="3Yg-tu-YUl"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AtS-gC-TeB">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="501"/>
+                                        <rect key="frame" x="0.0" y="40" width="560" height="435"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRg-Cn-gQo">
-                                        <rect key="frame" x="0.0" y="501" width="560" height="30"/>
-                                        <state key="normal" title="Random"/>
+                                    <button opaque="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRg-Cn-gQo">
+                                        <rect key="frame" x="0.0" y="475" width="560" height="40"/>
+                                        <state key="normal" title="Random" image="Shuffle Filled">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="handleRandomButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="uu5-f8-vdZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="AtS-gC-TeB" firstAttribute="top" secondItem="eYG-t6-Sbo" secondAttribute="bottom" constant="5" id="C4W-hL-51D"/>
+                                    <constraint firstItem="RRg-Cn-gQo" firstAttribute="top" secondItem="AtS-gC-TeB" secondAttribute="bottom" constant="5" id="UjP-ZA-med"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="C4W-hL-51D"/>
+                                        <exclude reference="UjP-ZA-med"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hdY-Uh-AGN" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="5WY-QV-wh3"/>
-                            <constraint firstItem="hdY-Uh-AGN" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="ZDw-Zb-ccb"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="hdY-Uh-AGN" secondAttribute="bottom" id="vQa-xx-q4E"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hdY-Uh-AGN" secondAttribute="trailing" id="zuC-4V-1jF"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="hdY-Uh-AGN" secondAttribute="bottom" constant="8" id="1No-3z-dqn"/>
+                            <constraint firstItem="hdY-Uh-AGN" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Clo-Jk-9PB"/>
+                            <constraint firstItem="hdY-Uh-AGN" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="OM2-uG-rLI"/>
+                            <constraint firstItem="hdY-Uh-AGN" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="xNi-Ij-pF1"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Randomizer" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="" image="Dice Filled" id="acW-dT-cKf">
+                        <inset key="imageInsets" minX="0.0" minY="8" maxX="0.0" maxY="-8"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="randomGifImageView" destination="AtS-gC-TeB" id="bsc-8T-rC2"/>
+                        <outlet property="shareFacebookButton" destination="ddV-ce-V75" id="Sjv-y7-5l5"/>
+                        <outlet property="shareTwitterButton" destination="yiv-Lt-4qI" id="vXi-TR-bNW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -139,52 +181,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o1Y-Rz-sRV">
-                                <rect key="frame" x="20" y="72" width="560" height="487"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Yqe-vH-QcV">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="457"/>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="bottom" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-Pf-YVv">
-                                        <rect key="frame" x="0.0" y="457" width="560" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJH-Ce-C5H">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
-                                                <state key="normal" title="Share to facebook"/>
-                                                <connections>
-                                                    <action selector="handleShareToFacebookButtonTapped:" destination="MA5-te-WYF" eventType="touchUpInside" id="EDg-4y-hLa"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqR-L2-ZKW">
-                                                <rect key="frame" x="280" y="0.0" width="280" height="30"/>
-                                                <state key="normal" title="Share to Twitter"/>
-                                                <connections>
-                                                    <action selector="handleShareToTwitterButtonTapped:" destination="MA5-te-WYF" eventType="touchUpInside" id="UhZ-TV-fLJ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqR-L2-ZKW">
+                                <rect key="frame" x="412" y="504" width="168" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="H6B-ZL-OJr"/>
+                                </constraints>
+                                <state key="normal" title="Share to Twitter" image="Twitter">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleShareToTwitterButtonTapped:" destination="MA5-te-WYF" eventType="touchUpInside" id="UhZ-TV-fLJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJH-Ce-C5H">
+                                <rect key="frame" x="20" y="503" width="191" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="cQf-aP-vBw"/>
+                                </constraints>
+                                <state key="normal" title="Share to Facebook" image="Facebook">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleShareToFacebookButtonTapped:" destination="MA5-te-WYF" eventType="touchUpInside" id="EDg-4y-hLa"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="1co-nw-oR1">
+                                <rect key="frame" x="0.0" y="72" width="600" height="423"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o1Y-Rz-sRV" firstAttribute="top" secondItem="HSE-DN-J5H" secondAttribute="bottom" constant="8" id="54i-tN-g18"/>
-                            <constraint firstItem="0P8-Q7-ltk" firstAttribute="top" secondItem="o1Y-Rz-sRV" secondAttribute="bottom" constant="-8" id="CUP-ug-dIT"/>
-                            <constraint firstItem="o1Y-Rz-sRV" firstAttribute="leading" secondItem="pkd-QT-3GK" secondAttribute="leadingMargin" id="MsS-LJ-0CW"/>
-                            <constraint firstItem="o1Y-Rz-sRV" firstAttribute="trailing" secondItem="pkd-QT-3GK" secondAttribute="trailingMargin" id="Ug9-g6-WMH"/>
-                            <constraint firstItem="0P8-Q7-ltk" firstAttribute="top" secondItem="o1Y-Rz-sRV" secondAttribute="bottom" constant="8" id="Zfi-ce-FVA"/>
-                            <constraint firstItem="o1Y-Rz-sRV" firstAttribute="top" secondItem="HSE-DN-J5H" secondAttribute="bottom" constant="8" id="sBl-Re-C6y"/>
+                            <constraint firstItem="0P8-Q7-ltk" firstAttribute="top" secondItem="yqR-L2-ZKW" secondAttribute="bottom" constant="8" id="3wO-Xb-eI4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yqR-L2-ZKW" secondAttribute="trailing" id="9iC-Y0-5VO"/>
+                            <constraint firstItem="1co-nw-oR1" firstAttribute="top" secondItem="HSE-DN-J5H" secondAttribute="bottom" constant="8" id="E3F-9R-rVv"/>
+                            <constraint firstItem="0P8-Q7-ltk" firstAttribute="top" secondItem="dJH-Ce-C5H" secondAttribute="bottom" constant="8" id="PKa-64-lKd"/>
+                            <constraint firstItem="1co-nw-oR1" firstAttribute="leading" secondItem="pkd-QT-3GK" secondAttribute="leadingMargin" constant="-20" id="T4q-lk-4Aj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1co-nw-oR1" secondAttribute="trailing" constant="-20" id="ads-tK-Zw6"/>
+                            <constraint firstItem="dJH-Ce-C5H" firstAttribute="top" secondItem="1co-nw-oR1" secondAttribute="bottom" constant="8" id="bZ7-Bj-BRY"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="dJH-Ce-C5H" secondAttribute="leading" id="cbf-jz-bJS"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="sBl-Re-C6y"/>
-                                <exclude reference="Zfi-ce-FVA"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
-                        <outlet property="originalImage" destination="Yqe-vH-QcV" id="teB-M4-CHV"/>
+                        <outlet property="scrollView" destination="1co-nw-oR1" id="flE-kk-Y2U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vnw-EE-v2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -210,11 +248,13 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Search giphy-->
+        <!--Navigation Controller-->
         <scene sceneID="syw-BF-POz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M7J-P2-jNY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search giphy" image="second" id="M75-UO-WxR"/>
+                    <tabBarItem key="tabBarItem" title="" image="Search Filled" id="M75-UO-WxR">
+                        <inset key="imageInsets" minX="0.0" minY="8" maxX="0.0" maxY="-8"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zbm-ZB-eWg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -231,7 +271,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="Dice Filled" width="40" height="40"/>
+        <image name="Facebook" width="40" height="40"/>
+        <image name="Search Filled" width="40" height="40"/>
+        <image name="Shuffle Filled" width="40" height="40"/>
+        <image name="Twitter" width="40" height="40"/>
     </resources>
 </document>

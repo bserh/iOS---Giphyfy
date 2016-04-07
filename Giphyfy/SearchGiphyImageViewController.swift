@@ -109,13 +109,12 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let tableViewCell = sender as! GiphyImageTableViewCell
         let indexPath = tableView.indexPathForCell(tableViewCell)!
-        NSLog("qweqr")
+        
         let giphyImage = giphyImages[indexPath.row]
         
-        if let presentFullSizeImageVC = segue.destinationViewController as? PresentFullSizeGifViewController,
-            gifUrl = giphyImage.giphyImageUrl where segue.identifier == SearchGiphyImageViewController.fullSizeSegueIdentifier {
-            let gifOriginalUrlString = gifUrl.stringByReplacingOccurrencesOfString("200w_d", withString: "giphy")
-            presentFullSizeImageVC.originalImageUrlString = gifOriginalUrlString
+        if let presentFullSizeImageVC = segue.destinationViewController as? PresentFullSizeGifViewController
+            where segue.identifier == SearchGiphyImageViewController.fullSizeSegueIdentifier {
+            presentFullSizeImageVC.giphyImage = giphyImage
         }
     }
     
@@ -147,12 +146,17 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         if let dataDictionary = giphySearchResponse["data"] as? [AnyObject] {
             for dataItem in dataDictionary {
                 if let images = dataItem["images"] as? [String: AnyObject],
-                    thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject] {
+                    thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject],
+                    originalImageData = images["original"] as? [String: AnyObject] {
                     var giphyImage = GiphyImage()
                     
                     giphyImage.giphyImageUrl = thumbImageData["url"] as? String
                     giphyImage.giphyImageWidth = Int((thumbImageData["width"] as? String)!)
                     giphyImage.giphyImageHeight = Int((thumbImageData["height"] as? String)!)
+                    
+                    giphyImage.giphyOriginalImageUrl = originalImageData["url"] as? String
+                    giphyImage.giphyOriginalImageWidth = Int((originalImageData["width"] as? String)!)
+                    giphyImage.giphyOriginalImageHeight = Int((originalImageData["height"] as? String)!)
                     
                     giphyImages.append(giphyImage)
                 }
