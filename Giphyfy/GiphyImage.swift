@@ -11,5 +11,5 @@ import Foundation
 public struct GiphyImage {
     public var giphyImageUrl: String?
     public var giphyImageWidth: Int?
-    //public var giphyImageHeights: Int?
+    public var giphyImageHeight: Int?
 }

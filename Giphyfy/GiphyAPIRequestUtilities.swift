@@ -13,7 +13,7 @@ public let giphyAPIRandomURL = "http://api.giphy.com/v1/gifs/random"
 
 private let APIKeyQueryParam = "api_key=dc6zaTOxFJmzC"
 
-public func sendGiphyRequest(requestURLString: String, queryParams: [String: String],
+public func sendGiphyRequest(requestURLString: String, queryParams: [String: AnyObject],
     callbackHandler: (data: NSData!, urlResponse: NSURLResponse!, error: NSError!) -> Void) {
         let requestGiphyURL = appendRequestURL(requestURLString, withQueryParams: queryParams)
         
@@ -36,7 +36,7 @@ public func sendGiphyRequest(requestURLString: String, queryParams: [String: Str
         task.resume()
 }
 
-private func appendRequestURL(requestURLString: String, withQueryParams queryParams: [String: String]) -> String {
+private func appendRequestURL(requestURLString: String, withQueryParams queryParams: [String: AnyObject]) -> String {
     var newURL = requestURLString
     
     if queryParams.isEmpty {

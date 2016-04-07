@@ -11,11 +11,13 @@ import UIKit
 class RandomGifViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var randomGifImageView: UIImageView!
+    private var giphyImage = GiphyImage()
 
-    //MARK: - Instance Methods
+    //MARK: - Overrided Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadRandomGif()
         // Do any additional setup after loading the view.
     }
 
@@ -25,19 +27,46 @@ class RandomGifViewController: UIViewController {
     }
     
     //MARK: - Actions
-    
-
     @IBAction func handleRandomButtonTapped(sender: UIButton) {
+        loadRandomGif()
+    }
+    
+    //MARK: - Custom Methods
+    private func handleRandomGiphyData(data: NSData!, urlResponse: NSURLResponse!, error: NSError!) {
+        guard let data = data else {
+            NSLog("handleRandomGiphyData() received no data")
+            return
+        }
         
+        do {
+            let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions([]))
+            guard let jsonArray = jsonObject as? [String: AnyObject] else {
+                NSLog("handleRandomGiphyData() didn't get an array")
+                return
+            }
+            
+            if let dataDictionary = jsonArray["data"] as? [String: AnyObject] {
+                self.giphyImage.giphyImageUrl = dataDictionary["image_url"] as? String
+                self.giphyImage.giphyImageWidth = dataDictionary["image_width"] as? Int
+            }
+            
+            self.renderGifImage()
+        } catch let error as NSError {
+            NSLog("JSON error: \(error)")
+        }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    private func loadRandomGif() {
+        sendGiphyRequest(giphyAPIRandomURL, queryParams: [:], callbackHandler: handleRandomGiphyData)
     }
-    */
+    
+    private func renderGifImage() {
+        if let urlString = giphyImage.giphyImageUrl, url = NSURL(string: urlString) {
+            let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.randomGifImageView.image = temporaryImage
+            }
+        }
+    }
 
 }
