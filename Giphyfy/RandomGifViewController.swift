@@ -19,14 +19,6 @@ class RandomGifViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shareTwitterButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
-        shareTwitterButton.titleLabel?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        shareTwitterButton.imageView?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        
-        shareFacebookButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
-        shareFacebookButton.titleLabel?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        shareFacebookButton.imageView?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        
         loadRandomGif()
         // Do any additional setup after loading the view.
     }

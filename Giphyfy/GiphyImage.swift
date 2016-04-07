@@ -16,6 +16,4 @@ struct GiphyImage {
     
     //for original
     var giphyOriginalImageUrl: String?
-    var giphyOriginalImageWidth: Int?
-    var giphyOriginalImageHeight: Int?
 }

@@ -153,10 +153,7 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
                     giphyImage.giphyImageUrl = thumbImageData["url"] as? String
                     giphyImage.giphyImageWidth = Int((thumbImageData["width"] as? String)!)
                     giphyImage.giphyImageHeight = Int((thumbImageData["height"] as? String)!)
-                    
                     giphyImage.giphyOriginalImageUrl = originalImageData["url"] as? String
-                    giphyImage.giphyOriginalImageWidth = Int((originalImageData["width"] as? String)!)
-                    giphyImage.giphyOriginalImageHeight = Int((originalImageData["height"] as? String)!)
                     
                     giphyImages.append(giphyImage)
                 }

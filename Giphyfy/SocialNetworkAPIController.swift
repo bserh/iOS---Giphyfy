@@ -39,6 +39,9 @@ class SocialNetworkAPIController {
                 let alertVC = UIAlertController(title: "Accounts Error",
                     message: "You don't have an account for this social. Please get one!",
                     preferredStyle: .Alert)
+                let completeAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                alertVC.addAction(completeAction)
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     sender.presentViewController(alertVC, animated: true, completion: nil)
                 }

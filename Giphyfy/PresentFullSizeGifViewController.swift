@@ -11,6 +11,7 @@ import UIKit
 class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var shareTwitterButton: UIButton!
     
     var originalImage = UIImageView()
     var giphyImage: GiphyImage?
@@ -18,6 +19,10 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Overrided Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        shareTwitterButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+        shareTwitterButton.titleLabel?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        shareTwitterButton.imageView?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
         
         if let urlString = self.giphyImage?.giphyOriginalImageUrl, url = NSURL(string: urlString) {
             let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)

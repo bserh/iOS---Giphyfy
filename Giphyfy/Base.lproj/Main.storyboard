@@ -21,13 +21,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hdY-Uh-AGN">
                                 <rect key="frame" x="20" y="28" width="560" height="515"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="bottom" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eYG-t6-Sbo">
+                                    <stackView opaque="NO" contentMode="top" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eYG-t6-Sbo">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddV-ce-V75">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <state key="normal" title="Share to" image="Facebook">
+                                                <state key="normal" image="Facebook">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -38,7 +38,7 @@
                                                 <rect key="frame" x="280" y="0.0" width="280" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                                <state key="normal" title="Share to" image="Twitter">
+                                                <state key="normal" image="Twitter">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -48,11 +48,11 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AtS-gC-TeB">
-                                        <rect key="frame" x="0.0" y="40" width="560" height="435"/>
+                                        <rect key="frame" x="0.0" y="40" width="560" height="441"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRg-Cn-gQo">
-                                        <rect key="frame" x="0.0" y="475" width="560" height="40"/>
-                                        <state key="normal" title="Random" image="Shuffle Filled">
+                                        <rect key="frame" x="0.0" y="481" width="560" height="34"/>
+                                        <state key="normal" title="Random">
                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -223,6 +223,7 @@
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="1co-nw-oR1" id="flE-kk-Y2U"/>
+                        <outlet property="shareTwitterButton" destination="yqR-L2-ZKW" id="YH6-I8-zSG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vnw-EE-v2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -274,7 +275,6 @@
         <image name="Dice Filled" width="40" height="40"/>
         <image name="Facebook" width="40" height="40"/>
         <image name="Search Filled" width="40" height="40"/>
-        <image name="Shuffle Filled" width="40" height="40"/>
         <image name="Twitter" width="40" height="40"/>
     </resources>
 </document>
