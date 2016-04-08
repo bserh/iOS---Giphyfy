@@ -77,23 +77,13 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func handleShareToFacebookButtonTapped(sender: UIButton) {
         let facebookController = FacebookController()
         
-        var message = SocialMessage()
-        message.initialText = "Here is the shared gif from #Giphyfy iOS app"
-        message.image = originalImage.image
-        message.url = giphyImage?.giphyImageUrl
-        
-        facebookController.postToSocialFrom(self, withMessage: message)
+        facebookController.postToSocialFrom(self, withGif: giphyImage!)
     }
     
     @IBAction func handleShareToTwitterButtonTapped(sender: UIButton) {
         let twitterController = TwitterController()
         
-        var message = SocialMessage()
-        message.initialText = "Here is the shared gif from #Giphyfy iOS app"
-        message.image = originalImage.image
-        message.url = giphyImage?.giphyImageUrl
-        
-        twitterController.postToSocialFrom(self, withMessage: message)
+        twitterController.postToSocialFrom(self, withGif: giphyImage!)
     }
     
     //MARK: - Custom Methods

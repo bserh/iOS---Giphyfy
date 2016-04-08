@@ -14,11 +14,10 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet weak var searchBar: UISearchBar!
     
     private static let fullSizeSegueIdentifier = "showFullSizeGifSegue"
-    private static let defaultOffset = 5
-    private var refreshControl = UIRefreshControl()
     private var giphyImages: [GiphyImage] = []
-    private var offset: Int? = nil
     private var searchQueryState: String? = nil
+    private var paging = PagingModel()
+    private let APIController = GiphyAPIController()
     
     //MARK: - Overrided Methods
     override func viewDidLoad() {
@@ -33,9 +32,10 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     //MARK: - Search Bar Delegate Methods
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        searchGifs(searchText, completionHandler: handleGiphyData)
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchGifsByKeyword(searchBar.text!)
         searchBar.resignFirstResponder()
     }
     
@@ -108,72 +108,35 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     }
     
     //MARK: - Custom Methods
-    private func handleGiphyData(data: NSData!, urlResponse: NSURLResponse!, error: NSError!) {
-        guard let data = data else {
-            NSLog("handleGiphyData() received no data")
-            return
+    private func handleGiphyData(giphyImages: [GiphyImage]) {
+        self.giphyImages += giphyImages
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+            self.tableView.tableFooterView?.hidden = true
+        })
+    }
+    
+    private func searchGifsByKeyword(searchString: String) {
+        if searchQueryState == nil {
+            searchQueryState = searchString
+            paging.offset = 0
+        } else if searchQueryState == searchString {
+            paging.offset += paging.limit
+        } else {
+            searchQueryState = searchString
+            paging.offset = 0
+            giphyImages = []
         }
         
-        do {
-            let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions([]))
-            guard let jsonArray = jsonObject as? [String: AnyObject] else {
-                NSLog("handleGiphyData() didn't get an array")
-                return
-            }
-            retrieveGiphyDataFromJsonArray(jsonArray)
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()
-                self.tableView.tableFooterView?.hidden = true
-            })
-        } catch let error as NSError {
-            NSLog("JSON error: \(error)")
-        }
-    }
-    
-    private func retrieveGiphyDataFromJsonArray(giphySearchResponse: [String: AnyObject]) {
-        if let dataDictionary = giphySearchResponse["data"] as? [AnyObject] {
-            for dataItem in dataDictionary {
-                if let images = dataItem["images"] as? [String: AnyObject],
-                    thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject] {
-                    var giphyImage = GiphyImage()
-                    
-                    giphyImage.giphyImageUrl = thumbImageData["url"] as? String
-                    giphyImage.giphyImageWidth = Int((thumbImageData["width"] as? String)!)
-                    giphyImage.giphyImageHeight = Int((thumbImageData["height"] as? String)!)
-                    
-                    giphyImages.append(giphyImage)
-                }
-            }
-        }
-    }
-    
-    private func searchGifs(searchString: String,
-        completionHandler: (data: NSData!, urlResponse: NSURLResponse!, error: NSError!) -> Void) {
-            if searchQueryState == nil {
-                searchQueryState = searchString
-                offset = 0
-            } else if searchQueryState == searchString {
-                offset! += SearchGiphyImageViewController.defaultOffset
-            } else {
-                searchQueryState = searchString
-                offset = 0
-                giphyImages = []
-            }
-            
-            let searchParams: [String: AnyObject] = [
-                "q": searchQueryState!,
-                "offset": offset!,
-                "limit": SearchGiphyImageViewController.defaultOffset
-            ]
-            
-            sendGiphyRequest(giphyAPISearchURL, queryParams: searchParams, callbackHandler: completionHandler)
+        APIController.searchAsyncGifs(queryString: searchQueryState!, withPaging: paging,
+            completionHandler: handleGiphyData)
     }
     
     private func loadMore() {
         self.tableView.tableFooterView?.hidden = false
         if let searchQueryState = searchQueryState {
-            self.searchGifs(searchQueryState, completionHandler: self.handleGiphyData)
+            searchGifsByKeyword(searchQueryState)
         }
     }
 

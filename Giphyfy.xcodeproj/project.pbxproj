@@ -11,11 +11,12 @@
 		A5540F631CB3C40C00D9BFA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5540F621CB3C40C00D9BFA9 /* Assets.xcassets */; };
 		A5540F661CB3C40C00D9BFA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5540F641CB3C40C00D9BFA9 /* LaunchScreen.storyboard */; };
 		A5540F6E1CB3C90100D9BFA9 /* RandomGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5540F6D1CB3C90100D9BFA9 /* RandomGifViewController.swift */; };
-		A5540F721CB3CBE000D9BFA9 /* GiphyAPIRequestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5540F711CB3CBDF00D9BFA9 /* GiphyAPIRequestUtilities.swift */; };
 		A5540F741CB3CC1600D9BFA9 /* GiphyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5540F731CB3CC1600D9BFA9 /* GiphyImage.swift */; };
 		A5540F7E1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A5540F7D1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m */; };
 		A5540F861CB4184400D9BFA9 /* SearchGiphyImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5540F851CB4184400D9BFA9 /* SearchGiphyImageViewController.swift */; };
 		A5540F881CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5540F871CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift */; };
+		A58C69B31CB7EA6D005AC0DD /* PagingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C69B21CB7EA6D005AC0DD /* PagingModel.swift */; };
+		A58C69B71CB7ED22005AC0DD /* GiphyAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C69B61CB7ED22005AC0DD /* GiphyAPIController.swift */; };
 		A5CDE16C1CB56481008B58C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CDE16A1CB56481008B58C4 /* Main.storyboard */; };
 		A5CFC9BC1CB55080002B959A /* PresentFullSizeGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFC9BB1CB55080002B959A /* PresentFullSizeGifViewController.swift */; };
 		A5F95DA01CB64D9A0052FAE4 /* SocialNetworkAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95D9F1CB64D9A0052FAE4 /* SocialNetworkAPIController.swift */; };
@@ -31,13 +32,14 @@
 		A5540F651CB3C40C00D9BFA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5540F671CB3C40C00D9BFA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5540F6D1CB3C90100D9BFA9 /* RandomGifViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGifViewController.swift; sourceTree = "<group>"; };
-		A5540F711CB3CBDF00D9BFA9 /* GiphyAPIRequestUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyAPIRequestUtilities.swift; sourceTree = "<group>"; };
 		A5540F731CB3CC1600D9BFA9 /* GiphyImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyImage.swift; sourceTree = "<group>"; };
 		A5540F751CB3FA9700D9BFA9 /* Giphyfy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Giphyfy-Bridging-Header.h"; sourceTree = "<group>"; };
 		A5540F7C1CB3FD5500D9BFA9 /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		A5540F7D1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		A5540F851CB4184400D9BFA9 /* SearchGiphyImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGiphyImageViewController.swift; sourceTree = "<group>"; };
 		A5540F871CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyImageTableViewCell.swift; sourceTree = "<group>"; };
+		A58C69B21CB7EA6D005AC0DD /* PagingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingModel.swift; sourceTree = "<group>"; };
+		A58C69B61CB7ED22005AC0DD /* GiphyAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyAPIController.swift; sourceTree = "<group>"; };
 		A5CDE16B1CB56481008B58C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Giphyfy/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CFC9BB1CB55080002B959A /* PresentFullSizeGifViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentFullSizeGifViewController.swift; sourceTree = "<group>"; };
 		A5F95D9F1CB64D9A0052FAE4 /* SocialNetworkAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAPIController.swift; sourceTree = "<group>"; };
@@ -102,8 +104,8 @@
 		A5540F701CB3CB8600D9BFA9 /* Giphy API */ = {
 			isa = PBXGroup;
 			children = (
-				A5540F711CB3CBDF00D9BFA9 /* GiphyAPIRequestUtilities.swift */,
 				A5540F731CB3CC1600D9BFA9 /* GiphyImage.swift */,
+				A58C69B61CB7ED22005AC0DD /* GiphyAPIController.swift */,
 			);
 			name = "Giphy API";
 			sourceTree = "<group>";
@@ -113,6 +115,7 @@
 			children = (
 				A5540F851CB4184400D9BFA9 /* SearchGiphyImageViewController.swift */,
 				A5540F871CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift */,
+				A58C69B21CB7EA6D005AC0DD /* PagingModel.swift */,
 			);
 			name = "Search Gif VC";
 			sourceTree = "<group>";
@@ -217,13 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5540F721CB3CBE000D9BFA9 /* GiphyAPIRequestUtilities.swift in Sources */,
 				A5540F881CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift in Sources */,
 				A5F95DA41CB657D10052FAE4 /* FacebookController.swift in Sources */,
 				A5540F861CB4184400D9BFA9 /* SearchGiphyImageViewController.swift in Sources */,
 				A5540F6E1CB3C90100D9BFA9 /* RandomGifViewController.swift in Sources */,
 				A5F95DA61CB65F6A0052FAE4 /* TwitterController.swift in Sources */,
+				A58C69B31CB7EA6D005AC0DD /* PagingModel.swift in Sources */,
 				A5540F5A1CB3C40C00D9BFA9 /* AppDelegate.swift in Sources */,
+				A58C69B71CB7ED22005AC0DD /* GiphyAPIController.swift in Sources */,
 				A5CFC9BC1CB55080002B959A /* PresentFullSizeGifViewController.swift in Sources */,
 				A5F95DA21CB651520052FAE4 /* SocialMessage.swift in Sources */,
 				A5540F7E1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m in Sources */,
