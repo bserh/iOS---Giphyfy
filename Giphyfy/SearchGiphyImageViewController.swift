@@ -13,7 +13,7 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    static let fullSizeSegueIdentifier = "showFullSizeGifSegue"
+    private static let fullSizeSegueIdentifier = "showFullSizeGifSegue"
     private static let defaultOffset = 5
     private var refreshControl = UIRefreshControl()
     private var giphyImages: [GiphyImage] = []
@@ -29,10 +29,6 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         tableView.dataSource = self
         searchBar.delegate = self
         
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        tableView.addSubview(refreshControl)
         tableView.tableFooterView?.hidden = true
     }
 
@@ -105,6 +101,17 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    //MARK: - Scroll View Delegate Methods
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let deltaOffset = maximumOffset - currentOffset
+        
+        if deltaOffset <= 0 {
+            loadMore()
+        }
+    }
+    
     //MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let tableViewCell = sender as! GiphyImageTableViewCell
@@ -146,14 +153,12 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         if let dataDictionary = giphySearchResponse["data"] as? [AnyObject] {
             for dataItem in dataDictionary {
                 if let images = dataItem["images"] as? [String: AnyObject],
-                    thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject],
-                    originalImageData = images["original"] as? [String: AnyObject] {
+                    thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject] {
                     var giphyImage = GiphyImage()
                     
                     giphyImage.giphyImageUrl = thumbImageData["url"] as? String
                     giphyImage.giphyImageWidth = Int((thumbImageData["width"] as? String)!)
                     giphyImage.giphyImageHeight = Int((thumbImageData["height"] as? String)!)
-                    giphyImage.giphyOriginalImageUrl = originalImageData["url"] as? String
                     
                     giphyImages.append(giphyImage)
                 }
@@ -181,16 +186,6 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
             ]
             
             sendGiphyRequest(giphyAPISearchURL, queryParams: searchParams, callbackHandler: completionHandler)
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        let deltaOffset = maximumOffset - currentOffset
-        
-        if deltaOffset <= 0 {
-            loadMore()
-        }
     }
     
     private func loadMore() {
