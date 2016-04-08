@@ -36,6 +36,7 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     //MARK: - Search Bar Delegate Methods
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchGifs(searchText, completionHandler: handleGiphyData)
+        searchBar.resignFirstResponder()
     }
     
     //MARK: - Table View Data Source Methods
