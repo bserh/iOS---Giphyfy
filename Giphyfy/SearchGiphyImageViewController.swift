@@ -18,7 +18,6 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     private var refreshControl = UIRefreshControl()
     private var giphyImages: [GiphyImage] = []
     private var offset: Int? = nil
-    private var searchActiveStatus = false
     private var searchQueryState: String? = nil
     
     //MARK: - Overrided Methods
@@ -28,8 +27,6 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
-        tableView.tableFooterView?.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,22 +34,6 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         // Dispose of any resources that can be recreated.
     }
     //MARK: - Search Bar Delegate Methods
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        searchActiveStatus = true
-    }
-    
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchActiveStatus = false
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchActiveStatus = false
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchActiveStatus = false
-    }
-    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchGifs(searchText, completionHandler: handleGiphyData)
     }
