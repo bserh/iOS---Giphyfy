@@ -11,6 +11,7 @@ import UIKit
 class RandomGifViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var randomGifImageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var giphyImage: GiphyImage?
     private let APIController = GiphyAPIController()
@@ -19,12 +20,13 @@ class RandomGifViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        APIController.getAsyncRandomGif(handleRandomGiphyData)
+        activityIndicator.hidesWhenStopped = true
+        loadImage()
     }
     
     //MARK: - Actions
     @IBAction func handleRandomButtonTapped(sender: UIButton) {
-        APIController.getAsyncRandomGif(handleRandomGiphyData)
+        loadImage()
     }
     
     @IBAction func shareButtonTapped(sender: UIBarButtonItem) {
@@ -39,11 +41,17 @@ class RandomGifViewController: UIViewController {
         renderGifImage()
     }
     
+    private func loadImage() {
+        activityIndicator.startAnimating()
+        APIController.getAsyncRandomGif(handleRandomGiphyData)
+    }
+    
     private func renderGifImage() {
         if let urlString = giphyImage!.giphyImageUrl, url = NSURL(string: urlString) {
             let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
             dispatch_async(dispatch_get_main_queue()) {
                 self.randomGifImageView.image = temporaryImage
+                self.activityIndicator.stopAnimating()
             }
         }
     }

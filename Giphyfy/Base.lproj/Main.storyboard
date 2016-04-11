@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AtS-gC-TeB">
+                                <rect key="frame" x="20" y="72" width="560" height="431"/>
+                            </imageView>
                             <button opaque="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRg-Cn-gQo">
                                 <rect key="frame" x="272" y="511" width="57" height="30"/>
                                 <state key="normal" title="Random"/>
@@ -25,9 +28,9 @@
                                     <action selector="handleRandomButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ceg-zh-aCX"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="AtS-gC-TeB">
-                                <rect key="frame" x="20" y="72" width="560" height="431"/>
-                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3L2-8L-4zb">
+                                <rect key="frame" x="337" y="516" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -36,6 +39,9 @@
                             <constraint firstItem="AtS-gC-TeB" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="4jV-cv-9HX"/>
                             <constraint firstItem="AtS-gC-TeB" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="Sxo-TJ-HQM"/>
                             <constraint firstItem="RRg-Cn-gQo" firstAttribute="top" secondItem="AtS-gC-TeB" secondAttribute="bottom" constant="8" id="U4k-Vi-hVK"/>
+                            <constraint firstItem="3L2-8L-4zb" firstAttribute="leading" secondItem="RRg-Cn-gQo" secondAttribute="trailing" constant="8" id="fqb-6f-fNQ"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="3L2-8L-4zb" secondAttribute="bottom" constant="15" id="kxH-63-Vet"/>
+                            <constraint firstItem="3L2-8L-4zb" firstAttribute="top" secondItem="AtS-gC-TeB" secondAttribute="bottom" constant="13" id="nKm-yw-GVu"/>
                             <constraint firstItem="AtS-gC-TeB" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="wBH-Ga-wnS"/>
                         </constraints>
                     </view>
@@ -47,6 +53,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="3L2-8L-4zb" id="86G-Ae-hCl"/>
                         <outlet property="randomGifImageView" destination="AtS-gC-TeB" id="bsc-8T-rC2"/>
                     </connections>
                 </viewController>
