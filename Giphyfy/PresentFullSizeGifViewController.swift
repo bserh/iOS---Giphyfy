@@ -14,7 +14,13 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var shareTwitterButton: UIButton!
     
     var originalImage = UIImageView()
-    var giphyImage: GiphyImage?
+    var giphyImage: GiphyImage? {
+        didSet {
+            let thumbURL = giphyImage!.giphyImageUrl
+            let originalURL = thumbURL?.stringByReplacingOccurrencesOfString("200w_d", withString: "giphy")
+            giphyImage!.giphyImageUrl = originalURL
+        }
+    }
     
     //MARK: - Overrided Methods
     override func viewDidLoad() {
@@ -24,7 +30,7 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
         shareTwitterButton.titleLabel?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
         shareTwitterButton.imageView?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
         
-        if let urlString = self.giphyImage?.giphyOriginalImageUrl, url = NSURL(string: urlString) {
+        if let urlString = self.giphyImage?.giphyImageUrl, url = NSURL(string: urlString) {
             let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
             originalImage.image = temporaryImage
             originalImage.frame = CGRectMake(0, 0, originalImage.image!.size.width, originalImage.image!.size.height)
@@ -71,23 +77,13 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func handleShareToFacebookButtonTapped(sender: UIButton) {
         let facebookController = FacebookController()
         
-        var message = SocialMessage()
-        message.initialText = "Here is the shared gif from #Giphyfy iOS app"
-        message.image = originalImage.image
-        message.url = giphyImage?.giphyOriginalImageUrl
-        
-        facebookController.postToSocialFrom(self, withMessage: message)
+        facebookController.postToSocialFrom(self, withGif: giphyImage!)
     }
     
     @IBAction func handleShareToTwitterButtonTapped(sender: UIButton) {
         let twitterController = TwitterController()
         
-        var message = SocialMessage()
-        message.initialText = "Here is the shared gif from #Giphyfy iOS app"
-        message.image = originalImage.image
-        message.url = giphyImage?.giphyOriginalImageUrl
-        
-        twitterController.postToSocialFrom(self, withMessage: message)
+        twitterController.postToSocialFrom(self, withGif: giphyImage!)
     }
     
     //MARK: - Custom Methods
