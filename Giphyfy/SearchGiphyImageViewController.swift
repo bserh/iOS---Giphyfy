@@ -18,6 +18,7 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     private var searchQueryState: String? = nil
     private var paging = PagingModel()
     private let APIController = GiphyAPIController()
+    private let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     //MARK: - Overrided Methods
     override func viewDidLoad() {
@@ -26,6 +27,8 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        pagingSpinner.hidesWhenStopped = true
     }
     
     //MARK: - Search Bar Delegate Methods
@@ -36,6 +39,18 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     
     //MARK: - Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if giphyImages.isEmpty {
+            let emptyLabel = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height))
+            emptyLabel.text = "No data is available"
+            emptyLabel.textAlignment = .Center
+            emptyLabel.sizeToFit()
+            
+            tableView.backgroundView = emptyLabel
+            tableView.separatorStyle = .None
+            
+            return 0
+        }
+        
         return 1
     }
     
@@ -78,13 +93,17 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return pagingSpinner
+    }
+    
     //MARK: - Scroll View Delegate Methods
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
         
-        if deltaOffset <= 0 {
+        if deltaOffset <= -20 {
             loadMore()
         }
     }
@@ -108,7 +127,7 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
-            self.tableView.tableFooterView?.hidden = true
+            self.pagingSpinner.stopAnimating()
         })
     }
     
@@ -129,7 +148,8 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     }
     
     private func loadMore() {
-        self.tableView.tableFooterView?.hidden = false
+        pagingSpinner.startAnimating()
+        
         if let searchQueryState = searchQueryState {
             searchGifsByKeyword(searchQueryState)
         }
