@@ -19,6 +19,7 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     private var paging = PagingModel()
     private let APIController = GiphyAPIController()
     private let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    private var gifsCache = [String: UIImage]()
     
     //MARK: - Overrided Methods
     override func viewDidLoad() {
@@ -60,16 +61,22 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GiphyImageCell") as! GiphyImageTableViewCell
-        
         let giphyImage = giphyImages[indexPath.row]
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if let urlString = giphyImage.giphyImageUrl, url = NSURL(string: urlString) {
-                let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
-                dispatch_async(dispatch_get_main_queue(), {
-                    cell.cellImage?.image = temporaryImage
-                })
-            }
-        })
+        if let gif = gifsCache[giphyImage.giphyImageUrl!] {
+            cell.cellImage?.image = gif
+        } else {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
+                if let urlString = giphyImage.giphyImageUrl, url = NSURL(string: urlString) {
+                    let image = UIImage.animatedImageWithAnimatedGIFURL(url)
+                    self.gifsCache[urlString] = image
+                    dispatch_async(dispatch_get_main_queue(), {
+                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? GiphyImageTableViewCell {
+                            cellToUpdate.cellImage?.image = image
+                        }
+                    })
+                }
+            })
+        }
         
         return cell
     }
