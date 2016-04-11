@@ -29,9 +29,6 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
         searchBar.delegate = self
         
         pagingSpinner.hidesWhenStopped = true
-        
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 160.0
     }
     
     //MARK: - Search Bar Delegate Methods
@@ -93,14 +90,6 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
