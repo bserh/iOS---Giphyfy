@@ -82,23 +82,24 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GiphyImageCell" id="TzA-7k-oZc" customClass="GiphyImageTableViewCell" customModule="Giphyfy" customModuleProvider="target">
+                                    <tableViewCell multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GiphyImageCell" id="TzA-7k-oZc" customClass="GiphyImageTableViewCell" customModule="Giphyfy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="136" width="600" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TzA-7k-oZc" id="k8Q-0M-fKK">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="148"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="m5w-2E-rth">
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="m5w-2E-rth">
                                                     <rect key="frame" x="8" y="8" width="584" height="132"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="m5w-2E-rth" secondAttribute="trailing" id="9gB-Lk-2WQ"/>
-                                                <constraint firstItem="m5w-2E-rth" firstAttribute="top" secondItem="k8Q-0M-fKK" secondAttribute="topMargin" id="Epr-PD-TZr"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="m5w-2E-rth" secondAttribute="bottom" id="pjn-1y-yvB"/>
-                                                <constraint firstItem="m5w-2E-rth" firstAttribute="leading" secondItem="k8Q-0M-fKK" secondAttribute="leadingMargin" id="zLO-mz-o6H"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="m5w-2E-rth" secondAttribute="leading" id="HJK-lw-bmW"/>
+                                                <constraint firstAttribute="topMargin" secondItem="m5w-2E-rth" secondAttribute="top" id="OY0-hl-A6E"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="m5w-2E-rth" secondAttribute="bottom" id="TL0-iP-gLk"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="m5w-2E-rth" secondAttribute="trailing" id="TMJ-bC-uOr"/>
+                                                <constraint firstItem="m5w-2E-rth" firstAttribute="centerX" secondItem="k8Q-0M-fKK" secondAttribute="centerX" id="ZSh-0z-5VW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
