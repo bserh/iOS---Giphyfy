@@ -15,12 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//        let url = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC"
-//        sendGiphyRequest(NSURL(string: url)!) {
-//            data, response, error in
-//            NSLog("asdaf")
-//        }
-        // Override point for customization after application launch.
         return true
     }
 

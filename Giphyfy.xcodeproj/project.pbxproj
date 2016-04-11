@@ -19,6 +19,7 @@
 		A58C69B71CB7ED22005AC0DD /* GiphyAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C69B61CB7ED22005AC0DD /* GiphyAPIController.swift */; };
 		A5CDE16C1CB56481008B58C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CDE16A1CB56481008B58C4 /* Main.storyboard */; };
 		A5CFC9BC1CB55080002B959A /* PresentFullSizeGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFC9BB1CB55080002B959A /* PresentFullSizeGifViewController.swift */; };
+		A5D513A31CBBA62200B9DB7C /* SocialSharingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D513A21CBBA62200B9DB7C /* SocialSharingUtilities.swift */; };
 		A5F95DA01CB64D9A0052FAE4 /* SocialNetworkAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95D9F1CB64D9A0052FAE4 /* SocialNetworkAPIController.swift */; };
 		A5F95DA21CB651520052FAE4 /* SocialMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95DA11CB651520052FAE4 /* SocialMessage.swift */; };
 		A5F95DA41CB657D10052FAE4 /* FacebookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95DA31CB657D10052FAE4 /* FacebookController.swift */; };
@@ -42,6 +43,7 @@
 		A58C69B61CB7ED22005AC0DD /* GiphyAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyAPIController.swift; sourceTree = "<group>"; };
 		A5CDE16B1CB56481008B58C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Giphyfy/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CFC9BB1CB55080002B959A /* PresentFullSizeGifViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentFullSizeGifViewController.swift; sourceTree = "<group>"; };
+		A5D513A21CBBA62200B9DB7C /* SocialSharingUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSharingUtilities.swift; sourceTree = "<group>"; };
 		A5F95D9F1CB64D9A0052FAE4 /* SocialNetworkAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAPIController.swift; sourceTree = "<group>"; };
 		A5F95DA11CB651520052FAE4 /* SocialMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMessage.swift; sourceTree = "<group>"; };
 		A5F95DA31CB657D10052FAE4 /* FacebookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				A5540F701CB3CB8600D9BFA9 /* Giphy API */,
 				A5CFC9BD1CB55097002B959A /* Present Full Size Gif VC */,
 				A5F95D9E1CB64D590052FAE4 /* Social API */,
+				A5D513A11CBBA5BC00B9DB7C /* Social Sharing Utilities */,
 				A5540F821CB40FF400D9BFA9 /* UIImage-Bringing-Header */,
 				A5540F621CB3C40C00D9BFA9 /* Assets.xcassets */,
 				A5CDE16A1CB56481008B58C4 /* Main.storyboard */,
@@ -136,6 +139,14 @@
 				A5CFC9BB1CB55080002B959A /* PresentFullSizeGifViewController.swift */,
 			);
 			name = "Present Full Size Gif VC";
+			sourceTree = "<group>";
+		};
+		A5D513A11CBBA5BC00B9DB7C /* Social Sharing Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A5D513A21CBBA62200B9DB7C /* SocialSharingUtilities.swift */,
+			);
+			name = "Social Sharing Utilities";
 			sourceTree = "<group>";
 		};
 		A5F95D9E1CB64D590052FAE4 /* Social API */ = {
@@ -232,6 +243,7 @@
 				A5F95DA21CB651520052FAE4 /* SocialMessage.swift in Sources */,
 				A5540F7E1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m in Sources */,
 				A5540F741CB3CC1600D9BFA9 /* GiphyImage.swift in Sources */,
+				A5D513A31CBBA62200B9DB7C /* SocialSharingUtilities.swift in Sources */,
 				A5F95DA01CB64D9A0052FAE4 /* SocialNetworkAPIController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

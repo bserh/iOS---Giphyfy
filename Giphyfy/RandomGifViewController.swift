@@ -11,8 +11,6 @@ import UIKit
 class RandomGifViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var randomGifImageView: UIImageView!
-    @IBOutlet weak var shareFacebookButton: UIButton!
-    @IBOutlet weak var shareTwitterButton: UIButton!
     
     private var giphyImage: GiphyImage?
     private let APIController = GiphyAPIController()
@@ -21,40 +19,24 @@ class RandomGifViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadRandomGif()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        APIController.getAsyncRandomGif(handleRandomGiphyData)
     }
     
     //MARK: - Actions
     @IBAction func handleRandomButtonTapped(sender: UIButton) {
-        loadRandomGif()
+        APIController.getAsyncRandomGif(handleRandomGiphyData)
     }
     
-    @IBAction func handleShareTwitterButtonTapped(sender: UIButton) {
-        let twitterController = TwitterController()
+    @IBAction func shareButtonTapped(sender: UIBarButtonItem) {
+        let socialSharingActionSheet = generateSocialSharingActionSheetFor(self, withGif: giphyImage!)
         
-        twitterController.postToSocialFrom(self, withGif: giphyImage!)
-    }
-    
-    @IBAction func handleShareFacebookButtonTapped(sender: UIButton) {
-        let facebookController = FacebookController()
-        
-        facebookController.postToSocialFrom(self, withGif: giphyImage!)
+        self.presentViewController(socialSharingActionSheet, animated: true, completion: nil)
     }
     
     //MARK: - Custom Methods
     private func handleRandomGiphyData(giphyImage: GiphyImage) {
         self.giphyImage = giphyImage
         renderGifImage()
-    }
-    
-    private func loadRandomGif() {
-        APIController.getAsyncRandomGif(handleRandomGiphyData)
     }
     
     private func renderGifImage() {

@@ -11,7 +11,6 @@ import UIKit
 class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var shareTwitterButton: UIButton!
     
     var originalImage = UIImageView()
     var giphyImage: GiphyImage? {
@@ -26,10 +25,6 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shareTwitterButton.transform = CGAffineTransformMakeScale(-1.0, 1.0)
-        shareTwitterButton.titleLabel?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        shareTwitterButton.imageView?.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        
         if let urlString = self.giphyImage?.giphyImageUrl, url = NSURL(string: urlString) {
             let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
             originalImage.image = temporaryImage
@@ -42,11 +37,6 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
             scrollView.contentSize = (originalImage.image?.size)!
             setZoomScale()
         }
-    }
-    //MARK: - Overrided Methods
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //MARK: - Scroll View Delegate Methods
@@ -74,16 +64,11 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //MARK: - Actions
-    @IBAction func handleShareToFacebookButtonTapped(sender: UIButton) {
-        let facebookController = FacebookController()
-        
-        facebookController.postToSocialFrom(self, withGif: giphyImage!)
-    }
     
-    @IBAction func handleShareToTwitterButtonTapped(sender: UIButton) {
-        let twitterController = TwitterController()
+    @IBAction func shareButtonTapped(sender: UIBarButtonItem) {
+        let socialSharingActionSheet = generateSocialSharingActionSheetFor(self, withGif: giphyImage!)
         
-        twitterController.postToSocialFrom(self, withGif: giphyImage!)
+        self.presentViewController(socialSharingActionSheet, animated: true, completion: nil)
     }
     
     //MARK: - Custom Methods
