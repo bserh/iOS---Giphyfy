@@ -194,10 +194,10 @@ class GiphyLoader {
             oldSearchString = query
             pagingModel.offset = 0
         }
-        
-        var queryParams: [String: AnyObject] = [
-            "q": query
-        ]
+        var queryParams = [String: AnyObject]()
+        if let query = query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
+            queryParams["q"] = query
+        }
         queryParams += pagingModel.toDictionaryRepresentation()
         
         return queryParams
