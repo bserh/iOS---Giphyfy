@@ -12,5 +12,4 @@ struct SocialMessage {
     var initialText: String?
     var url: String?
     var image: UIImage?
-    
 }

@@ -17,9 +17,8 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     private var giphyImages: [GiphyImage] = []
     private var searchQueryState: String? = nil
     private var paging = PagingModel()
-    private let APIController = GiphyAPIController()
+    private let giphyLoader = GiphyLoader()
     private let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-    private var gifsCache = [String: UIImage]()
     
     //MARK: - Overrided Methods
     override func viewDidLoad() {
@@ -60,23 +59,19 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GiphyImageCell") as! GiphyImageTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("GiphyImageCell", forIndexPath: indexPath) as! GiphyImageTableViewCell
         let giphyImage = giphyImages[indexPath.row]
-        if let gif = gifsCache[giphyImage.giphyImageUrl!] {
-            cell.cellImage?.image = gif
-        } else {
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-                if let urlString = giphyImage.giphyImageUrl, url = NSURL(string: urlString) {
-                    let image = UIImage.animatedImageWithAnimatedGIFURL(url)
-                    self.gifsCache[urlString] = image
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? GiphyImageTableViewCell {
-                            cellToUpdate.cellImage?.image = image
-                        }
-                    })
-                }
-            })
-        }
+        cell.cellImage.image = nil
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
+            if let urlString = giphyImage.giphyImageUrl, url = NSURL(string: urlString) {
+                let image = UIImage.animatedImageWithAnimatedGIFURL(url)
+                dispatch_async(dispatch_get_main_queue(), {
+                    cell.cellImage.image = image
+                })
+            }
+
+        })
         
         return cell
     }
@@ -138,6 +133,8 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
     }
     
     private func searchGifsByKeyword(searchString: String) {
+        pagingSpinner.startAnimating()
+        
         if searchQueryState == nil {
             searchQueryState = searchString
             paging.offset = 0
@@ -149,13 +146,11 @@ class SearchGiphyImageViewController: UIViewController, UITableViewDataSource, U
             giphyImages = []
         }
         
-        APIController.searchAsyncGifs(queryString: searchQueryState!, withPaging: paging,
+        giphyLoader.searchAsyncGifs(queryString: searchQueryState!, withPaging: paging,
             completionHandler: handleGiphyData)
     }
     
     private func loadMore() {
-        pagingSpinner.startAnimating()
-        
         if let searchQueryState = searchQueryState {
             searchGifsByKeyword(searchQueryState)
         }

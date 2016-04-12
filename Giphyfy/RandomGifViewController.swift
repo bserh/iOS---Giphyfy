@@ -14,7 +14,7 @@ class RandomGifViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var giphyImage: GiphyImage?
-    private let APIController = GiphyAPIController()
+    private let giphyLoader = GiphyLoader()
 
     //MARK: - Overrided Methods
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class RandomGifViewController: UIViewController {
     
     private func loadImage() {
         activityIndicator.startAnimating()
-        APIController.getAsyncRandomGif(handleRandomGiphyData)
+        giphyLoader.getAsyncRandomGif(handleRandomGiphyData)
     }
     
     private func renderGifImage() {

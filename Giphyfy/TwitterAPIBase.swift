@@ -9,7 +9,7 @@
 import Foundation
 import Social
 
-class TwitterController: SocialNetworkAPIController {
+class TwitterAPIBase: SocialNetworkAPIBase {
     
     init() {
         let serviceType = SLServiceTypeTwitter

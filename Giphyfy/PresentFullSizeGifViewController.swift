@@ -19,7 +19,6 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     
-    var lastZoomScale: CGFloat = -1
     var giphyImage: GiphyImage? {
         didSet {
             let thumbURL = giphyImage!.giphyImageUrl
@@ -27,6 +26,7 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
             giphyImage!.giphyImageUrl = originalURL
         }
     }
+    private var lastZoomScale: CGFloat = -1
     
     //MARK: - Overrided Methods
     override func viewWillAppear(animated: Bool) {
@@ -54,8 +54,8 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
         coordinator.animateAlongsideTransition({
-            [unowned self] _ in
-            self.updateZoom()
+            [weak self] _ in
+            self?.updateZoom()
             }, completion: nil)
     }
     

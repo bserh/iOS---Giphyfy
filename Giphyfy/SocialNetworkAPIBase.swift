@@ -10,7 +10,7 @@ import Foundation
 import Social
 import UIKit
 
-class SocialNetworkAPIController {
+class SocialNetworkAPIBase {
     private var serviceType: String
     
     init(serviceType: String) {

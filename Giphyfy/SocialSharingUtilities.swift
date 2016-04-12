@@ -14,15 +14,15 @@ func generateSocialSharingActionSheetFor(sender: UIViewController, withGif giphy
     
     let facebookPostAction = UIAlertAction(title: "Share on Facebook", style: .Default) {
         action in
-        let facebookController = FacebookController()
+        let facebookAPI = FacebookAPIBase()
         
-        facebookController.postToSocialFrom(sender, withGif: giphyImage)
+        facebookAPI.postToSocialFrom(sender, withGif: giphyImage)
     }
     let tweetAction = UIAlertAction(title: "Share on Twitter", style: .Default) {
         action in
-        let twitterController = TwitterController()
+        let twitterAPI = TwitterAPIBase()
         
-        twitterController.postToSocialFrom(sender, withGif: giphyImage)
+        twitterAPI.postToSocialFrom(sender, withGif: giphyImage)
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
     

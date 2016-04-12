@@ -19,13 +19,13 @@ func += <K,V> (inout left: Dictionary<K,V>, right: Dictionary<K,V>?) {
     }
 }
 
-class GiphyAPIController {
+class GiphyLoader {
     private static let giphyAPISearchURL = "http://api.giphy.com/v1/gifs/search"
     private static let giphyAPIRandomURL = "http://api.giphy.com/v1/gifs/random"
     private static let APIKeyQueryParam = "api_key=dc6zaTOxFJmzC"
     
     func getAsyncRandomGif(completionHandler: (giphyimage: GiphyImage) -> Void) {
-        guard let requestUrl = getRequestUrl(GiphyAPIController.giphyAPIRandomURL, withParams: [:]) else {
+        guard let requestUrl = getRequestUrl(GiphyLoader.giphyAPIRandomURL, withParams: [:]) else {
             NSLog("Wrong Giphy URL")
             return
         }
@@ -51,7 +51,7 @@ class GiphyAPIController {
         
         queryParams += paging.toDictionaryRepresentation()
         
-        guard let requestURL = getRequestUrl(GiphyAPIController.giphyAPISearchURL, withParams: queryParams) else {
+        guard let requestURL = getRequestUrl(GiphyLoader.giphyAPISearchURL, withParams: queryParams) else {
             NSLog("Wrong Giphy URL")
             return
         }
@@ -153,13 +153,13 @@ class GiphyAPIController {
         var newURL = requestURLString
         
         if queryParams.isEmpty {
-            newURL += "?" + GiphyAPIController.APIKeyQueryParam
+            newURL += "?" + GiphyLoader.APIKeyQueryParam
         } else {
             newURL += "?"
             for (key, value) in queryParams {
                 newURL += "\(key)=\(value)&"
             }
-            newURL += GiphyAPIController.APIKeyQueryParam
+            newURL += GiphyLoader.APIKeyQueryParam
         }
         
         return newURL

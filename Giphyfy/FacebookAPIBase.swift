@@ -9,7 +9,7 @@
 import Foundation
 import Social
 
-class FacebookController: SocialNetworkAPIController {
+class FacebookAPIBase: SocialNetworkAPIBase {
     
     init() {
         let serviceType = SLServiceTypeFacebook
