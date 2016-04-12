@@ -1,14 +1,14 @@
 //
-//  SearchGiphyImageViewController.swift
+//  SearchStickerImageViewController.swift
 //  Giphyfy
 //
-//  Created by Sergey Bavykin on 4/5/16.
+//  Created by Sergey Bavykin on 4/12/16.
 //  Copyright © 2016 Sergey Bavykin. All rights reserved.
 //
 
 import UIKit
 
-class SearchGiphyImageViewController: GiphySearchBasedViewController, Searchable {
+class SearchStickerImageViewController: GiphySearchBasedViewController, Searchable {
     //MARK: - Overrided Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,6 @@ class SearchGiphyImageViewController: GiphySearchBasedViewController, Searchable
     func search(searchString: String) {
         pagingSpinner.startAnimating()
         
-        giphyLoader.searchAsyncGifs(queryString: searchString, completionHandler: handleGiphyData)
+        giphyLoader.searchAsyncStickers(queryString: searchString, completionHandler: handleGiphyData)
     }
 }

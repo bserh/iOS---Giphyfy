@@ -20,12 +20,26 @@ func += <K,V> (inout left: Dictionary<K,V>, right: Dictionary<K,V>?) {
 }
 
 class GiphyLoader {
-    private static let giphyAPISearchURL = "http://api.giphy.com/v1/gifs/search"
-    private static let giphyAPIRandomURL = "http://api.giphy.com/v1/gifs/random"
+    private static let searchGifsURL = "http://api.giphy.com/v1/gifs/search"
+    private static let randomGifURL = "http://api.giphy.com/v1/gifs/random"
+    private static let searchStickersURL = "http://api.giphy.com/v1/stickers/search"
     private static let APIKeyQueryParam = "api_key=dc6zaTOxFJmzC"
     
+    private var oldSearchString: String
+    private var pagingModel: PagingModel
+    
+    init() {
+        self.oldSearchString = ""
+        self.pagingModel = PagingModel()
+    }
+    
+    init(pagingModel: PagingModel) {
+        self.oldSearchString = ""
+        self.pagingModel = pagingModel
+    }
+    
     func getAsyncRandomGif(completionHandler: (giphyimage: GiphyImage) -> Void) {
-        guard let requestUrl = getRequestUrl(GiphyLoader.giphyAPIRandomURL, withParams: [:]) else {
+        guard let requestUrl = getRequestUrl(GiphyLoader.randomGifURL, withParams: [:]) else {
             NSLog("Wrong Giphy URL")
             return
         }
@@ -44,14 +58,30 @@ class GiphyLoader {
         task.resume()
     }
     
-    func searchAsyncGifs(queryString string: String, withPaging paging: PagingModel, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
-        var queryParams: [String: AnyObject] = [
-            "q": string
-        ]
+    func searchAsyncGifs(queryString string: String, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
+        let queryParams = prepareSearchParamForSearchQuery(string)
+        guard let requestURL = getRequestUrl(GiphyLoader.searchGifsURL, withParams: queryParams) else {
+            NSLog("Wrong Giphy URL")
+            return
+        }
         
-        queryParams += paging.toDictionaryRepresentation()
+        let request = NSURLRequest(URL: requestURL)
+        let session = getSessionWithDefaults()
         
-        guard let requestURL = getRequestUrl(GiphyLoader.giphyAPISearchURL, withParams: queryParams) else {
+        let task = session.dataTaskWithRequest(request) {
+            data, response, error in
+            
+            if let giphyImages = self.parseSearchedData(data!) {
+                completionHandler(giphyImages: giphyImages)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func searchAsyncStickers(queryString string: String, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
+        let queryParams = prepareSearchParamForSearchQuery(string)
+        guard let requestURL = getRequestUrl(GiphyLoader.searchStickersURL, withParams: queryParams) else {
             NSLog("Wrong Giphy URL")
             return
         }
@@ -101,7 +131,6 @@ class GiphyLoader {
                 
                 return giphyImages
             }
-
         } catch let error as NSError {
             NSLog("JSON error: \(error)")
         }
@@ -163,6 +192,22 @@ class GiphyLoader {
         }
         
         return newURL
+    }
+    
+    private func prepareSearchParamForSearchQuery(query: String) -> [String: AnyObject] {
+        if query == oldSearchString {
+            pagingModel.offset += pagingModel.limit
+        } else {
+            oldSearchString = query
+            pagingModel.offset = 0
+        }
+        
+        var queryParams: [String: AnyObject] = [
+            "q": query
+        ]
+        queryParams += pagingModel.toDictionaryRepresentation()
+        
+        return queryParams
     }
 }
 

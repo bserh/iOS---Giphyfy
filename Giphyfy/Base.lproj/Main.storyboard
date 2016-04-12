@@ -121,7 +121,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search gifs" id="ZU4-Xs-fyU"/>
                     <connections>
-                        <outlet property="searchBar" destination="o6x-dl-rft" id="KDm-KF-GcV"/>
+                        <outlet property="searchBar" destination="o6x-dl-rft" id="0Vz-Hh-Igp"/>
                         <outlet property="searchDisplayController" destination="Jk2-sv-nWG" id="i8a-Xc-ISf"/>
                         <outlet property="tableView" destination="VEw-JO-PFi" id="QFi-8k-2kK"/>
                     </connections>
@@ -212,18 +212,19 @@
                     <connections>
                         <segue destination="LFl-7R-pwi" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="M7J-P2-jNY" kind="relationship" relationship="viewControllers" id="7aK-Bu-OEP"/>
+                        <segue destination="uZJ-Oe-fO8" kind="relationship" relationship="viewControllers" id="VhX-Y9-lQu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--gifs-->
         <scene sceneID="syw-BF-POz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M7J-P2-jNY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Search Filled" id="M75-UO-WxR">
-                        <inset key="imageInsets" minX="0.0" minY="8" maxX="0.0" maxY="-8"/>
+                    <tabBarItem key="tabBarItem" title="gifs" image="Search Filled" id="M75-UO-WxR">
+                        <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-2"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zbm-ZB-eWg">
@@ -260,9 +261,110 @@
             </objects>
             <point key="canvasLocation" x="750" y="-321"/>
         </scene>
+        <!--Search stickers-->
+        <scene sceneID="iYb-kB-sGt">
+            <objects>
+                <viewController id="kid-6q-OEE" customClass="SearchStickerImageViewController" customModule="Giphyfy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jw5-iF-flY"/>
+                        <viewControllerLayoutGuide type="bottom" id="G38-1C-9de"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xbt-yk-VNS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="149" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ahs-fL-nvQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="9hq-16-66m">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GiphyImageCell" id="fWC-ug-5ht" customClass="GiphyImageTableViewCell" customModule="Giphyfy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="136" width="600" height="149"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fWC-ug-5ht" id="FXy-9U-2b5">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="148"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="jwp-9Q-c0T">
+                                                    <rect key="frame" x="8" y="8" width="584" height="132"/>
+                                                    <gestureRecognizers/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="topMargin" secondItem="jwp-9Q-c0T" secondAttribute="top" id="ILF-c7-F2T"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jwp-9Q-c0T" secondAttribute="trailing" id="PnQ-lv-7lJ"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="jwp-9Q-c0T" secondAttribute="leading" id="SCM-tf-qd7"/>
+                                                <constraint firstItem="jwp-9Q-c0T" firstAttribute="centerX" secondItem="FXy-9U-2b5" secondAttribute="centerX" id="efP-AV-qaO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jwp-9Q-c0T" secondAttribute="bottom" id="foC-rd-8kB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outlet property="cellImage" destination="jwp-9Q-c0T" id="9lL-50-LHm"/>
+                                            <segue destination="MA5-te-WYF" kind="show" identifier="showFullSizeGifSegue" id="rxA-vD-vmO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ahs-fL-nvQ" firstAttribute="leading" secondItem="Xbt-yk-VNS" secondAttribute="leadingMargin" constant="-20" id="5EE-eo-8OA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ahs-fL-nvQ" secondAttribute="trailing" constant="-20" id="Ecw-yt-q8n"/>
+                            <constraint firstItem="ahs-fL-nvQ" firstAttribute="top" secondItem="Xbt-yk-VNS" secondAttribute="topMargin" id="SOB-mO-vHP"/>
+                            <constraint firstItem="G38-1C-9de" firstAttribute="top" secondItem="ahs-fL-nvQ" secondAttribute="bottom" id="Vfc-yB-IPQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search stickers" id="QCc-07-WYE"/>
+                    <connections>
+                        <outlet property="searchBar" destination="9hq-16-66m" id="M4x-gP-pQj"/>
+                        <outlet property="searchDisplayController" destination="Jk2-sv-nWG" id="MuB-oR-e3A"/>
+                        <outlet property="tableView" destination="ahs-fL-nvQ" id="R75-ZD-ZxC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wAl-Vi-7Jn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="M6j-0e-hJr">
+                    <connections>
+                        <outlet property="delegate" destination="kid-6q-OEE" id="rRJ-26-P2x"/>
+                        <outlet property="searchContentsController" destination="kid-6q-OEE" id="eVB-xh-3sQ"/>
+                        <outlet property="searchResultsDataSource" destination="kid-6q-OEE" id="Hvj-Nm-XGL"/>
+                        <outlet property="searchResultsDelegate" destination="kid-6q-OEE" id="ijo-gU-iRG"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1562" y="1085"/>
+        </scene>
+        <!--stickers-->
+        <scene sceneID="3Ml-4p-hEO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uZJ-Oe-fO8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="stickers" image="Search Filled" id="zLf-Wj-Lh3">
+                        <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-2"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G2F-Zf-XzM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kid-6q-OEE" kind="relationship" relationship="rootViewController" id="0Dn-lI-nfW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gDN-Op-v34" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1085"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Dice Filled" width="40" height="40"/>
         <image name="Search Filled" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="rxA-vD-vmO"/>
+    </inferredMetricsTieBreakers>
 </document>
