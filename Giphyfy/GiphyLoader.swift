@@ -65,18 +65,7 @@ class GiphyLoader {
             return
         }
         
-        let request = NSURLRequest(URL: requestURL)
-        let session = getSessionWithDefaults()
-        
-        let task = session.dataTaskWithRequest(request) {
-            data, response, error in
-            
-            if let giphyImages = self.parseSearchedData(data!) {
-                completionHandler(giphyImages: giphyImages)
-            }
-        }
-        
-        task.resume()
+        performAsyncSearchRequest(requestURL, completionHandler: completionHandler)
     }
     
     func searchAsyncStickers(queryString string: String, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
@@ -86,6 +75,10 @@ class GiphyLoader {
             return
         }
         
+        performAsyncSearchRequest(requestURL, completionHandler: completionHandler)
+    }
+    
+    func performAsyncSearchRequest(requestURL: NSURL!, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
         let request = NSURLRequest(URL: requestURL)
         let session = getSessionWithDefaults()
         
