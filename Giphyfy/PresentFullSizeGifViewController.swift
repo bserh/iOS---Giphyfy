@@ -11,8 +11,15 @@ import UIKit
 class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     //MARK: - Properties
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var imageView: UIImageView!
     
-    var originalImage = UIImageView()
+    @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
+    
+    var lastZoomScale: CGFloat = -1
     var giphyImage: GiphyImage? {
         didSet {
             let thumbURL = giphyImage!.giphyImageUrl
@@ -22,49 +29,46 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //MARK: - Overrided Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if let urlString = self.giphyImage?.giphyImageUrl, url = NSURL(string: urlString) {
-            let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
-            originalImage.image = temporaryImage
-            originalImage.frame = CGRectMake(0, 0, originalImage.image!.size.width, originalImage.image!.size.height)
-            originalImage.contentMode = UIViewContentMode.Center
-            
-            scrollView.delegate = self
-            scrollView.addSubview(self.originalImage)
-            
-            scrollView.contentSize = (originalImage.image?.size)!
-            setZoomScale()
-        }
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let urlString = self.giphyImage!.giphyImageUrl
+        let url = NSURL(string: urlString!)
+        let image = UIImage.animatedImageWithAnimatedGIFURL(url)
+        imageView.image = image
+        activityIndicator.stopAnimating()
+        
+        scrollView.delegate = self
+        updateZoom()
+        updateConstraints()
+    }
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        coordinator.animateAlongsideTransition({
+            [unowned self] _ in
+            self.updateZoom()
+            }, completion: nil)
     }
     
     //MARK: - Scroll View Delegate Methods
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return originalImage
+        return imageView
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        let boundsSize = scrollView.bounds.size
-        var contentsFrame = originalImage.frame
-        
-        if contentsFrame.size.width < boundsSize.width {
-            contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2
-        } else {
-            contentsFrame.origin.x = 0
-        }
-        
-        if contentsFrame.size.height < boundsSize.height {
-            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2
-        } else {
-            contentsFrame.origin.y = 0
-        }
-        
-        originalImage.frame = contentsFrame
+        updateConstraints()
     }
     
     //MARK: - Actions
-    
     @IBAction func shareButtonTapped(sender: UIBarButtonItem) {
         let socialSharingActionSheet = generateSocialSharingActionSheetFor(self, withGif: giphyImage!)
         
@@ -72,15 +76,48 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //MARK: - Custom Methods
-    private func setZoomScale() {
-        let scrollViewFrame = scrollView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
-        let minScale = min(scaleWidth, scaleHeight)
-        
-        scrollView.minimumZoomScale = minScale / 2
-        scrollView.maximumZoomScale = 2.0
-        scrollView.zoomScale = 1.0
+    private func updateConstraints() {
+        if let image = imageView.image {
+            let imageWidth = image.size.width
+            let imageHeight = image.size.height
+            
+            let viewWidth = scrollView.bounds.size.width
+            let viewHeight = scrollView.bounds.size.height
+            
+            // center image if it is smaller than the scroll view
+            var hPadding = (viewWidth - scrollView.zoomScale * imageWidth) / 2
+            if hPadding < 0 {
+                hPadding = 0
+            }
+            
+            var vPadding = (viewHeight - scrollView.zoomScale * imageHeight) / 2
+            if vPadding < 0 {
+                vPadding = 0
+            }
+            
+            imageConstraintLeft.constant = hPadding
+            imageConstraintRight.constant = hPadding
+            
+            imageConstraintTop.constant = vPadding
+            imageConstraintBottom.constant = vPadding
+            
+            view.layoutIfNeeded()
+        }
+    }
+    
+    private func updateZoom() {
+        if let image = imageView.image {
+            var minZoom = min(scrollView.bounds.size.width / image.size.width, scrollView.bounds.size.height / image.size.height)
+            if minZoom > 1 {
+                minZoom = 1
+            }
+            
+            scrollView.minimumZoomScale = minZoom
+            scrollView.maximumZoomScale = 2
+            
+            scrollView.zoomScale = minZoom
+            lastZoomScale = minZoom
+        }
     }
 
 }

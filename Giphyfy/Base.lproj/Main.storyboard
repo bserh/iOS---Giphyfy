@@ -150,16 +150,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="1co-nw-oR1">
-                                <rect key="frame" x="0.0" y="72" width="600" height="471"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mg6-2E-cXz">
+                                <rect key="frame" x="290" y="515" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="EF2-4u-esj">
+                                <rect key="frame" x="0.0" y="50" width="600" height="540"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="bi7-LZ-lbq">
+                                        <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bi7-LZ-lbq" firstAttribute="trailing" secondItem="EF2-4u-esj" secondAttribute="trailing" constant="-1" id="74v-Ra-xXW" userLabel="Horizontal Space - (-1) - Scroll View - Image View"/>
+                                    <constraint firstItem="bi7-LZ-lbq" firstAttribute="leading" secondItem="EF2-4u-esj" secondAttribute="leading" constant="250" id="SeR-bf-ES6"/>
+                                    <constraint firstItem="bi7-LZ-lbq" firstAttribute="top" secondItem="EF2-4u-esj" secondAttribute="top" constant="250" id="aUG-uR-w37"/>
+                                    <constraint firstItem="bi7-LZ-lbq" firstAttribute="bottom" secondItem="EF2-4u-esj" secondAttribute="bottom" constant="-1" id="pLP-Je-fqW"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0P8-Q7-ltk" firstAttribute="top" secondItem="1co-nw-oR1" secondAttribute="bottom" constant="8" id="4MR-Bp-Apr"/>
-                            <constraint firstItem="1co-nw-oR1" firstAttribute="top" secondItem="HSE-DN-J5H" secondAttribute="bottom" constant="8" id="Dh5-dh-ePT"/>
-                            <constraint firstItem="1co-nw-oR1" firstAttribute="leading" secondItem="pkd-QT-3GK" secondAttribute="leadingMargin" constant="-20" id="DxB-Y0-uHS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1co-nw-oR1" secondAttribute="trailing" constant="-20" id="VRK-Dq-UDI"/>
+                            <constraint firstItem="0P8-Q7-ltk" firstAttribute="top" secondItem="mg6-2E-cXz" secondAttribute="bottom" constant="16" id="9s2-81-dcH"/>
+                            <constraint firstItem="EF2-4u-esj" firstAttribute="leading" secondItem="pkd-QT-3GK" secondAttribute="leadingMargin" constant="-20" id="FeD-5S-65o"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="EF2-4u-esj" secondAttribute="bottom" constant="10" id="TSo-nl-SbY"/>
+                            <constraint firstItem="EF2-4u-esj" firstAttribute="top" secondItem="pkd-QT-3GK" secondAttribute="topMargin" constant="50" id="bhI-5Y-08q"/>
+                            <constraint firstItem="mg6-2E-cXz" firstAttribute="centerX" secondItem="pkd-QT-3GK" secondAttribute="centerX" id="o9x-zP-bsc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EF2-4u-esj" secondAttribute="trailing" constant="-20" id="wlK-Rz-pl5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Full size gif" id="BWY-UK-m1p">
@@ -170,7 +186,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="scrollView" destination="1co-nw-oR1" id="flE-kk-Y2U"/>
+                        <outlet property="activityIndicator" destination="mg6-2E-cXz" id="Srb-U1-laq"/>
+                        <outlet property="imageConstraintBottom" destination="pLP-Je-fqW" id="4zm-xU-jVP"/>
+                        <outlet property="imageConstraintLeft" destination="SeR-bf-ES6" id="xLY-vl-gBB"/>
+                        <outlet property="imageConstraintRight" destination="74v-Ra-xXW" id="1lU-gb-oqA"/>
+                        <outlet property="imageConstraintTop" destination="aUG-uR-w37" id="NsJ-GE-04Y"/>
+                        <outlet property="imageView" destination="bi7-LZ-lbq" id="2d4-iM-MiO"/>
+                        <outlet property="scrollView" destination="EF2-4u-esj" id="PLG-WD-DUz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vnw-EE-v2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
