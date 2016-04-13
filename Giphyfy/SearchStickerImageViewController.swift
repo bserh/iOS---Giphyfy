@@ -40,6 +40,7 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
             return 0
         }
         
+        collectionView.backgroundView = nil
         return 1
     }
     
