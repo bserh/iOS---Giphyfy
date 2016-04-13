@@ -28,6 +28,18 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
     
     //MARK: - Collection View Data Source Methods
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        if searchController.data.isEmpty {
+            let emptyLabel = UILabel(frame: CGRectMake(0, 0, collectionView.bounds.size.width, collectionView.bounds.size.height))
+            emptyLabel.text = "No data is available"
+            emptyLabel.textAlignment = .Center
+            emptyLabel.textColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+            emptyLabel.sizeToFit()
+            
+            collectionView.backgroundView = emptyLabel
+            
+            return 0
+        }
+        
         return 1
     }
     
