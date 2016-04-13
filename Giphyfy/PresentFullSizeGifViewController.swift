@@ -19,11 +19,11 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     
-    var giphyImage: GiphyImage? {
+    var gifModel: GiphyImage? {
         didSet {
-            let thumbURL = giphyImage!.giphyImageUrl
+            let thumbURL = gifModel!.giphyImageUrl
             let originalURL = thumbURL?.stringByReplacingOccurrencesOfString("200w_d", withString: "giphy")
-            giphyImage!.giphyImageUrl = originalURL
+            gifModel!.giphyImageUrl = originalURL
         }
     }
     private var lastZoomScale: CGFloat = -1
@@ -39,7 +39,7 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let urlString = self.giphyImage!.giphyImageUrl
+        let urlString = self.gifModel!.giphyImageUrl
         let url = NSURL(string: urlString!)
         let image = UIImage.animatedImageWithAnimatedGIFURL(url)
         imageView.image = image
@@ -70,7 +70,7 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - Actions
     @IBAction func shareButtonTapped(sender: UIBarButtonItem) {
-        let socialSharingActionSheet = generateSocialSharingActionSheetFor(self, withGif: giphyImage!)
+        let socialSharingActionSheet = generateSocialSharingActionSheetFor(self, withGif: gifModel!)
         
         self.presentViewController(socialSharingActionSheet, animated: true, completion: nil)
     }

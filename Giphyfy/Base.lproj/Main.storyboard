@@ -273,57 +273,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="149" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ahs-fL-nvQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="9hq-16-66m">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                                <prototypes>
-                                    <tableViewCell multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GiphyImageCell" id="fWC-ug-5ht" customClass="GiphyImageTableViewCell" customModule="Giphyfy" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="136" width="600" height="149"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fWC-ug-5ht" id="FXy-9U-2b5">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="148"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="I9E-fJ-7xf">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ubz-Br-Hrz">
+                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2Ct-d3-xEP">
+                                    <size key="itemSize" width="141" height="109"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StickerImageCell" id="gFe-sU-y0e" customClass="StickerImageCollectionViewCell" customModule="Giphyfy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="141" height="109"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="141" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="jwp-9Q-c0T">
-                                                    <rect key="frame" x="8" y="8" width="584" height="132"/>
-                                                    <gestureRecognizers/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Xhk-Tb-F2V">
+                                                    <rect key="frame" x="10" y="10" width="121" height="89"/>
                                                 </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="topMargin" secondItem="jwp-9Q-c0T" secondAttribute="top" id="ILF-c7-F2T"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="jwp-9Q-c0T" secondAttribute="trailing" id="PnQ-lv-7lJ"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="jwp-9Q-c0T" secondAttribute="leading" id="SCM-tf-qd7"/>
-                                                <constraint firstItem="jwp-9Q-c0T" firstAttribute="centerX" secondItem="FXy-9U-2b5" secondAttribute="centerX" id="efP-AV-qaO"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="jwp-9Q-c0T" secondAttribute="bottom" id="foC-rd-8kB"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Xhk-Tb-F2V" secondAttribute="bottom" constant="2" id="2Vj-gY-lSX"/>
+                                            <constraint firstItem="Xhk-Tb-F2V" firstAttribute="leading" secondItem="gFe-sU-y0e" secondAttribute="leadingMargin" constant="2" id="4cd-sF-cMS"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Xhk-Tb-F2V" secondAttribute="trailing" constant="2" id="9xO-yl-Isp"/>
+                                            <constraint firstItem="Xhk-Tb-F2V" firstAttribute="top" secondItem="gFe-sU-y0e" secondAttribute="topMargin" constant="2" id="ThW-e0-Qs6"/>
+                                            <constraint firstItem="Xhk-Tb-F2V" firstAttribute="centerX" secondItem="gFe-sU-y0e" secondAttribute="centerX" id="iAf-ZJ-usi"/>
+                                            <constraint firstItem="Xhk-Tb-F2V" firstAttribute="centerY" secondItem="gFe-sU-y0e" secondAttribute="centerY" id="xPY-D1-nw5"/>
+                                        </constraints>
                                         <connections>
-                                            <outlet property="cellImage" destination="jwp-9Q-c0T" id="9lL-50-LHm"/>
-                                            <segue destination="MA5-te-WYF" kind="show" identifier="showFullSizeGifSegue" id="rxA-vD-vmO"/>
+                                            <outlet property="stickerImageView" destination="Xhk-Tb-F2V" id="ZU6-gg-4L4"/>
+                                            <segue destination="MA5-te-WYF" kind="show" identifier="showFullSizeStickerSegue" id="rxP-pR-2aA"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ahs-fL-nvQ" firstAttribute="leading" secondItem="Xbt-yk-VNS" secondAttribute="leadingMargin" constant="-20" id="5EE-eo-8OA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ahs-fL-nvQ" secondAttribute="trailing" constant="-20" id="Ecw-yt-q8n"/>
-                            <constraint firstItem="ahs-fL-nvQ" firstAttribute="top" secondItem="Xbt-yk-VNS" secondAttribute="topMargin" id="SOB-mO-vHP"/>
-                            <constraint firstItem="G38-1C-9de" firstAttribute="top" secondItem="ahs-fL-nvQ" secondAttribute="bottom" id="Vfc-yB-IPQ"/>
+                            <constraint firstItem="ubz-Br-Hrz" firstAttribute="leading" secondItem="Xbt-yk-VNS" secondAttribute="leadingMargin" constant="-20" id="KuN-2M-wuy"/>
+                            <constraint firstItem="ubz-Br-Hrz" firstAttribute="top" secondItem="I9E-fJ-7xf" secondAttribute="bottom" id="SMQ-j1-1y5"/>
+                            <constraint firstItem="I9E-fJ-7xf" firstAttribute="leading" secondItem="Xbt-yk-VNS" secondAttribute="leadingMargin" constant="-20" id="Znr-8w-WpG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ubz-Br-Hrz" secondAttribute="trailing" constant="-20" id="b3q-c8-JD7"/>
+                            <constraint firstItem="I9E-fJ-7xf" firstAttribute="top" secondItem="Jw5-iF-flY" secondAttribute="bottom" id="dt7-rg-om5"/>
+                            <constraint firstItem="ubz-Br-Hrz" firstAttribute="top" secondItem="I9E-fJ-7xf" secondAttribute="bottom" id="gnn-y8-qB5"/>
+                            <constraint firstItem="G38-1C-9de" firstAttribute="top" secondItem="ubz-Br-Hrz" secondAttribute="bottom" id="gqj-YC-kO8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I9E-fJ-7xf" secondAttribute="trailing" constant="-20" id="n8F-dk-5GS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search stickers" id="QCc-07-WYE"/>
                     <connections>
-                        <outlet property="searchBar" destination="9hq-16-66m" id="M4x-gP-pQj"/>
+                        <outlet property="collectionView" destination="ubz-Br-Hrz" id="hbh-Ky-sVm"/>
+                        <outlet property="searchBar" destination="I9E-fJ-7xf" id="p5w-j8-v03"/>
                         <outlet property="searchDisplayController" destination="Jk2-sv-nWG" id="MuB-oR-e3A"/>
-                        <outlet property="tableView" destination="ahs-fL-nvQ" id="R75-ZD-ZxC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAl-Vi-7Jn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -365,6 +373,6 @@
         <image name="Search Filled" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rxA-vD-vmO"/>
+        <segue reference="rxP-pR-2aA"/>
     </inferredMetricsTieBreakers>
 </document>

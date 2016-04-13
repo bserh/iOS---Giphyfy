@@ -15,18 +15,19 @@
 		A5540F7E1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A5540F7D1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m */; };
 		A5540F861CB4184400D9BFA9 /* SearchGiphyImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5540F851CB4184400D9BFA9 /* SearchGiphyImageViewController.swift */; };
 		A5540F881CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5540F871CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift */; };
+		A570488C1CBE360300AFD325 /* CollectionSearchableBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A570488B1CBE360200AFD325 /* CollectionSearchableBaseViewController.swift */; };
 		A58C69B31CB7EA6D005AC0DD /* PagingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C69B21CB7EA6D005AC0DD /* PagingModel.swift */; };
 		A58C69B71CB7ED22005AC0DD /* GiphyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58C69B61CB7ED22005AC0DD /* GiphyLoader.swift */; };
 		A5B5714B1CBD1CB90083F108 /* SearchStickerImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5714A1CBD1CB90083F108 /* SearchStickerImageViewController.swift */; };
 		A5CDE16C1CB56481008B58C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CDE16A1CB56481008B58C4 /* Main.storyboard */; };
 		A5CFC9BC1CB55080002B959A /* PresentFullSizeGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFC9BB1CB55080002B959A /* PresentFullSizeGifViewController.swift */; };
 		A5D513A31CBBA62200B9DB7C /* SocialSharingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D513A21CBBA62200B9DB7C /* SocialSharingUtilities.swift */; };
-		A5D513A51CBD08C900B9DB7C /* GiphySearchBasedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D513A41CBD08C900B9DB7C /* GiphySearchBasedViewController.swift */; };
-		A5D513A71CBD097200B9DB7C /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D513A61CBD097200B9DB7C /* Searchable.swift */; };
 		A5F95DA01CB64D9A0052FAE4 /* SocialNetworkAPIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95D9F1CB64D9A0052FAE4 /* SocialNetworkAPIBase.swift */; };
 		A5F95DA21CB651520052FAE4 /* SocialMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95DA11CB651520052FAE4 /* SocialMessage.swift */; };
 		A5F95DA41CB657D10052FAE4 /* FacebookAPIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95DA31CB657D10052FAE4 /* FacebookAPIBase.swift */; };
 		A5F95DA61CB65F6A0052FAE4 /* TwitterAPIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F95DA51CB65F6A0052FAE4 /* TwitterAPIBase.swift */; };
+		A5FB12171CBE20A5002F846D /* StickerImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FB12161CBE20A5002F846D /* StickerImageCollectionViewCell.swift */; };
+		A5FB12191CBE2487002F846D /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FB12181CBE2487002F846D /* SearchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,18 +43,19 @@
 		A5540F7D1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		A5540F851CB4184400D9BFA9 /* SearchGiphyImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGiphyImageViewController.swift; sourceTree = "<group>"; };
 		A5540F871CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyImageTableViewCell.swift; sourceTree = "<group>"; };
+		A570488B1CBE360200AFD325 /* CollectionSearchableBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSearchableBaseViewController.swift; sourceTree = "<group>"; };
 		A58C69B21CB7EA6D005AC0DD /* PagingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingModel.swift; sourceTree = "<group>"; };
 		A58C69B61CB7ED22005AC0DD /* GiphyLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyLoader.swift; sourceTree = "<group>"; };
 		A5B5714A1CBD1CB90083F108 /* SearchStickerImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStickerImageViewController.swift; sourceTree = "<group>"; };
 		A5CDE16B1CB56481008B58C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Giphyfy/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CFC9BB1CB55080002B959A /* PresentFullSizeGifViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentFullSizeGifViewController.swift; sourceTree = "<group>"; };
 		A5D513A21CBBA62200B9DB7C /* SocialSharingUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSharingUtilities.swift; sourceTree = "<group>"; };
-		A5D513A41CBD08C900B9DB7C /* GiphySearchBasedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphySearchBasedViewController.swift; sourceTree = "<group>"; };
-		A5D513A61CBD097200B9DB7C /* Searchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
 		A5F95D9F1CB64D9A0052FAE4 /* SocialNetworkAPIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworkAPIBase.swift; sourceTree = "<group>"; };
 		A5F95DA11CB651520052FAE4 /* SocialMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMessage.swift; sourceTree = "<group>"; };
 		A5F95DA31CB657D10052FAE4 /* FacebookAPIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAPIBase.swift; sourceTree = "<group>"; };
 		A5F95DA51CB65F6A0052FAE4 /* TwitterAPIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAPIBase.swift; sourceTree = "<group>"; };
+		A5FB12161CBE20A5002F846D /* StickerImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5FB12181CBE2487002F846D /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,12 +124,11 @@
 		A5540F811CB40FDE00D9BFA9 /* Search Gif VC */ = {
 			isa = PBXGroup;
 			children = (
-				A5540F851CB4184400D9BFA9 /* SearchGiphyImageViewController.swift */,
-				A5B5714A1CBD1CB90083F108 /* SearchStickerImageViewController.swift */,
-				A5D513A41CBD08C900B9DB7C /* GiphySearchBasedViewController.swift */,
-				A5540F871CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift */,
+				A570488B1CBE360200AFD325 /* CollectionSearchableBaseViewController.swift */,
+				A5FB12141CBE201D002F846D /* Search Gifs Table VC */,
+				A5FB12151CBE2067002F846D /* Search Stickers Collection VC */,
 				A58C69B21CB7EA6D005AC0DD /* PagingModel.swift */,
-				A5D513A61CBD097200B9DB7C /* Searchable.swift */,
+				A5FB12181CBE2487002F846D /* SearchController.swift */,
 			);
 			name = "Search Gif VC";
 			sourceTree = "<group>";
@@ -167,6 +168,24 @@
 				A5F95DA51CB65F6A0052FAE4 /* TwitterAPIBase.swift */,
 			);
 			name = "Social API";
+			sourceTree = "<group>";
+		};
+		A5FB12141CBE201D002F846D /* Search Gifs Table VC */ = {
+			isa = PBXGroup;
+			children = (
+				A5540F851CB4184400D9BFA9 /* SearchGiphyImageViewController.swift */,
+				A5540F871CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift */,
+			);
+			name = "Search Gifs Table VC";
+			sourceTree = "<group>";
+		};
+		A5FB12151CBE2067002F846D /* Search Stickers Collection VC */ = {
+			isa = PBXGroup;
+			children = (
+				A5B5714A1CBD1CB90083F108 /* SearchStickerImageViewController.swift */,
+				A5FB12161CBE20A5002F846D /* StickerImageCollectionViewCell.swift */,
+			);
+			name = "Search Stickers Collection VC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,17 +260,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5540F881CB41E9E00D9BFA9 /* GiphyImageTableViewCell.swift in Sources */,
-				A5D513A51CBD08C900B9DB7C /* GiphySearchBasedViewController.swift in Sources */,
+				A5FB12171CBE20A5002F846D /* StickerImageCollectionViewCell.swift in Sources */,
 				A5F95DA41CB657D10052FAE4 /* FacebookAPIBase.swift in Sources */,
 				A5540F861CB4184400D9BFA9 /* SearchGiphyImageViewController.swift in Sources */,
 				A5540F6E1CB3C90100D9BFA9 /* RandomGifViewController.swift in Sources */,
-				A5D513A71CBD097200B9DB7C /* Searchable.swift in Sources */,
 				A5F95DA61CB65F6A0052FAE4 /* TwitterAPIBase.swift in Sources */,
+				A5FB12191CBE2487002F846D /* SearchController.swift in Sources */,
 				A58C69B31CB7EA6D005AC0DD /* PagingModel.swift in Sources */,
 				A5540F5A1CB3C40C00D9BFA9 /* AppDelegate.swift in Sources */,
 				A58C69B71CB7ED22005AC0DD /* GiphyLoader.swift in Sources */,
 				A5CFC9BC1CB55080002B959A /* PresentFullSizeGifViewController.swift in Sources */,
 				A5F95DA21CB651520052FAE4 /* SocialMessage.swift in Sources */,
+				A570488C1CBE360300AFD325 /* CollectionSearchableBaseViewController.swift in Sources */,
 				A5540F7E1CB3FD5500D9BFA9 /* UIImage+animatedGIF.m in Sources */,
 				A5B5714B1CBD1CB90083F108 /* SearchStickerImageViewController.swift in Sources */,
 				A5540F741CB3CC1600D9BFA9 /* GiphyImage.swift in Sources */,
