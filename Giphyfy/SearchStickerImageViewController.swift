@@ -24,6 +24,7 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
         searchController = SearchController(pagingModel: PagingModel(limit: 14, offset: 0))
         
         searchBar.delegate = self
+        collectionView.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
     }
     
     //MARK: - Collection View Data Source Methods
@@ -32,7 +33,6 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
             let emptyLabel = UILabel(frame: CGRectMake(0, 0, collectionView.bounds.size.width, collectionView.bounds.size.height))
             emptyLabel.text = "No data is available"
             emptyLabel.textAlignment = .Center
-            emptyLabel.textColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
             emptyLabel.sizeToFit()
             
             collectionView.backgroundView = emptyLabel
@@ -54,12 +54,15 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
         
         let cellGifModel = searchController.data[indexPath.row]
         cell.stickerImageView.image = nil
+        cell.loadingIndicator.hidesWhenStopped = true
+        cell.loadingIndicator.startAnimating()
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
             if let urlString = cellGifModel.giphyImageUrl, url = NSURL(string: urlString) {
                 let image = UIImage.animatedImageWithAnimatedGIFURL(url)
                 dispatch_async(dispatch_get_main_queue(), {
                     cell.stickerImageView.image = image
+                    cell.loadingIndicator.stopAnimating()
                 })
             }
         })

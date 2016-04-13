@@ -10,4 +10,5 @@ import UIKit
 
 class StickerImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var stickerImageView: UIImageView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 }

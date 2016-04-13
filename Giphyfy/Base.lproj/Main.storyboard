@@ -296,6 +296,9 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Xhk-Tb-F2V">
                                                     <rect key="frame" x="10" y="10" width="121" height="89"/>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gd3-dX-rHD">
+                                                    <rect key="frame" x="60" y="45" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -308,6 +311,7 @@
                                             <constraint firstItem="Xhk-Tb-F2V" firstAttribute="centerY" secondItem="gFe-sU-y0e" secondAttribute="centerY" id="xPY-D1-nw5"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="loadingIndicator" destination="gd3-dX-rHD" id="nT4-qS-kVd"/>
                                             <outlet property="stickerImageView" destination="Xhk-Tb-F2V" id="ZU6-gg-4L4"/>
                                             <segue destination="MA5-te-WYF" kind="show" identifier="showFullSizeStickerSegue" id="rxP-pR-2aA"/>
                                         </connections>
