@@ -13,7 +13,7 @@ class RandomGifViewController: UIViewController {
     @IBOutlet weak var randomGifImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private var giphyImage: GiphyImage?
+    private var gifModel: GiphyImage?
     private let giphyLoader = GiphyLoader()
 
     //MARK: - Overrided Methods
@@ -21,33 +21,33 @@ class RandomGifViewController: UIViewController {
         super.viewDidLoad()
         
         activityIndicator.hidesWhenStopped = true
-        loadImage()
+        loadNextImage()
     }
     
     //MARK: - Actions
     @IBAction func handleRandomButtonTapped(sender: UIButton) {
-        loadImage()
+        loadNextImage()
     }
     
     @IBAction func shareButtonTapped(sender: UIBarButtonItem) {
-        let socialSharingActionSheet = generateSocialSharingActionSheetFor(self, withGif: giphyImage!)
+        let socialSharingActionSheet = generateSocialSharingActionSheetFor(self, withGif: gifModel!)
         
         self.presentViewController(socialSharingActionSheet, animated: true, completion: nil)
     }
     
     //MARK: - Custom Methods
     private func handleRandomGiphyData(giphyImage: GiphyImage) {
-        self.giphyImage = giphyImage
+        self.gifModel = giphyImage
         renderGifImage()
     }
     
-    private func loadImage() {
+    private func loadNextImage() {
         activityIndicator.startAnimating()
         giphyLoader.getAsyncRandomGif(handleRandomGiphyData)
     }
     
     private func renderGifImage() {
-        if let urlString = giphyImage!.giphyImageUrl, url = NSURL(string: urlString) {
+        if let urlString = gifModel!.giphyImageUrl, url = NSURL(string: urlString) {
             let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
             dispatch_async(dispatch_get_main_queue()) {
                 self.randomGifImageView.image = temporaryImage
