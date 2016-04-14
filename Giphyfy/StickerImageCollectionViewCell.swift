@@ -11,4 +11,10 @@ import UIKit
 class StickerImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var stickerImageView: UIImageView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        stickerImageView.image = nil
+    }
 }

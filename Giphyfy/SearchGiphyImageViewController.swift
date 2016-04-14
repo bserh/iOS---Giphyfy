@@ -60,16 +60,16 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GiphyImageTableViewCell
         let cellGifModel = searchController.data[indexPath.row]
-        cell.cellImage.image = nil
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if let urlString = cellGifModel.giphyImageUrl, url = NSURL(string: urlString) {
+            if let urlString = cellGifModel.giphyThumbImageUrl, url = NSURL(string: urlString) {
                 let image = UIImage.animatedImageWithAnimatedGIFURL(url)
                 dispatch_async(dispatch_get_main_queue(), {
-                    cell.cellImage.image = image
+                    if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? GiphyImageTableViewCell {
+                        cellToUpdate.cellImage.image = image
+                    }
                 })
             }
-            
         })
         
         return cell
@@ -80,8 +80,8 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
         let cellWidth = UIScreen.mainScreen().bounds.width
         
         let gifModel = searchController.data[indexPath.row]
-        let gifWidth = gifModel.giphyImageWidth!
-        let gifHeight = gifModel.giphyImageHeight!
+        let gifWidth = gifModel.giphyThumbImageWidth!
+        let gifHeight = gifModel.giphyThumbImageHeight!
         
         let scale = Double(gifWidth) / Double(gifHeight)
         let cellHeight = CGFloat(Double(cellWidth) / scale)

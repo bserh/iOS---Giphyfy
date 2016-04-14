@@ -47,7 +47,7 @@ class RandomGifViewController: UIViewController {
     }
     
     private func renderGifImage() {
-        if let urlString = gifModel!.giphyImageUrl, url = NSURL(string: urlString) {
+        if let urlString = gifModel!.giphyOriginalImageUrl, url = NSURL(string: urlString) {
             let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
             dispatch_async(dispatch_get_main_queue()) {
                 self.randomGifImageView.image = temporaryImage

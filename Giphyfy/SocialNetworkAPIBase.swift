@@ -54,7 +54,7 @@ class SocialNetworkAPIBase {
         var message = SocialMessage()
         
         message.initialText = "Here is the shared gif from #Giphyfy iOS app"
-        if let GIFURLString = giphyImage.giphyImageUrl, GIFURL = NSURL(string: GIFURLString),
+        if let GIFURLString = giphyImage.giphyOriginalImageUrl, GIFURL = NSURL(string: GIFURLString),
             image = UIImage.animatedImageWithAnimatedGIFURL(GIFURL) {
             message.image = image
             message.url = GIFURLString

@@ -111,12 +111,17 @@ class GiphyLoader {
                 
                 for dataItem in dataDictionary {
                     if let images = dataItem["images"] as? [String: AnyObject],
-                        thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject] {
+                        thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject],
+                        originalImageData = images["original"] {
                         var giphyImage = GiphyImage()
                         
-                        giphyImage.giphyImageUrl = thumbImageData["url"] as? String
-                        giphyImage.giphyImageWidth = Int((thumbImageData["width"] as? String)!)
-                        giphyImage.giphyImageHeight = Int((thumbImageData["height"] as? String)!)
+                        giphyImage.giphyThumbImageUrl = thumbImageData["url"] as? String
+                        giphyImage.giphyThumbImageWidth = Int((thumbImageData["width"] as? String)!)
+                        giphyImage.giphyThumbImageHeight = Int((thumbImageData["height"] as? String)!)
+                            
+                        giphyImage.giphyOriginalImageUrl = originalImageData["url"] as? String
+                        giphyImage.giphyOriginalImageWidth = Int((originalImageData["width"] as? String)!)
+                        giphyImage.giphyOriginalImageHeight = Int((originalImageData["height"] as? String)!)
                         
                         giphyImages.append(giphyImage)
                     }
@@ -146,7 +151,11 @@ class GiphyLoader {
             
             if let dataDictionary = jsonArray["data"] as? [String: AnyObject] {
                 var giphyImage = GiphyImage()
-                giphyImage.giphyImageUrl = dataDictionary["image_url"] as? String
+                
+                giphyImage.giphyOriginalImageUrl = dataDictionary["image_url"] as? String
+                giphyImage.giphyOriginalImageWidth = Int((dataDictionary["image_width"] as? String)!)
+                giphyImage.giphyOriginalImageHeight = Int((dataDictionary["image_height"] as? String)!)
+                
                 return giphyImage
             }
         } catch let error as NSError {

@@ -10,4 +10,9 @@ import UIKit
 
 class GiphyImageTableViewCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cellImage.image = nil
+    }
 }

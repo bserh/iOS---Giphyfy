@@ -53,16 +53,17 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
             as! StickerImageCollectionViewCell
         
         let cellGifModel = searchController.data[indexPath.row]
-        cell.stickerImageView.image = nil
         cell.loadingIndicator.hidesWhenStopped = true
         cell.loadingIndicator.startAnimating()
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if let urlString = cellGifModel.giphyImageUrl, url = NSURL(string: urlString) {
+            if let urlString = cellGifModel.giphyThumbImageUrl, url = NSURL(string: urlString) {
                 let image = UIImage.animatedImageWithAnimatedGIFURL(url)
                 dispatch_async(dispatch_get_main_queue(), {
-                    cell.stickerImageView.image = image
-                    cell.loadingIndicator.stopAnimating()
+                    if let cellToUpdate = collectionView.cellForItemAtIndexPath(indexPath) as? StickerImageCollectionViewCell {
+                        cellToUpdate.stickerImageView.image = image
+                        cellToUpdate.loadingIndicator.stopAnimating()
+                    }
                 })
             }
         })
@@ -75,8 +76,8 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
         let cellWidth = (UIScreen.mainScreen().bounds.width / 2) - 5
         
         let gifModel = searchController.data[indexPath.row]
-        let gifWidth = gifModel.giphyImageWidth!
-        let gifHeight = gifModel.giphyImageHeight!
+        let gifWidth = gifModel.giphyThumbImageWidth!
+        let gifHeight = gifModel.giphyThumbImageHeight!
         
         let scale = Double(gifWidth) / Double(gifHeight)
         let cellHeight = CGFloat(Double(cellWidth) / scale)
