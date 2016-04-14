@@ -133,6 +133,5 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
         
         pagingSpinner.startAnimating()
         searchController.getGifsAsyncByKeyWord(searchedString, completionHandler: handleGiphyData)
-        searchBar.resignFirstResponder()
     }
 }

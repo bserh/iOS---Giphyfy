@@ -128,6 +128,5 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
         let searchedString = searchBar.text!
         
         searchController.getStickersAsyncByKeyWord(searchedString, completionHandler: handleGiphyData)
-        searchBar.resignFirstResponder()
     }
 }
