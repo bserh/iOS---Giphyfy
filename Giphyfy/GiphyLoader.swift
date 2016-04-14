@@ -38,7 +38,7 @@ class GiphyLoader {
         self.pagingModel = pagingModel
     }
     
-    func getAsyncRandomGif(completionHandler: (giphyimage: GiphyImage) -> Void) {
+    func getAsyncRandomGif(completionHandler: (giphyimage: GiphyImageModel) -> Void) {
         guard let requestUrl = getRequestUrl(GiphyLoader.randomGifURL, withParams: [:]) else {
             NSLog("Wrong Giphy URL")
             return
@@ -58,7 +58,7 @@ class GiphyLoader {
         task.resume()
     }
     
-    func searchAsyncGifs(queryString string: String, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
+    func searchAsyncGifs(queryString string: String, completionHandler: (giphyImages: [GiphyImageModel]) -> Void) {
         let queryParams = prepareSearchParamForSearchQuery(string)
         guard let requestURL = getRequestUrl(GiphyLoader.searchGifsURL, withParams: queryParams) else {
             NSLog("Wrong Giphy URL")
@@ -68,7 +68,7 @@ class GiphyLoader {
         performAsyncSearchRequest(requestURL, completionHandler: completionHandler)
     }
     
-    func searchAsyncStickers(queryString string: String, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
+    func searchAsyncStickers(queryString string: String, completionHandler: (giphyImages: [GiphyImageModel]) -> Void) {
         let queryParams = prepareSearchParamForSearchQuery(string)
         guard let requestURL = getRequestUrl(GiphyLoader.searchStickersURL, withParams: queryParams) else {
             NSLog("Wrong Giphy URL")
@@ -78,7 +78,7 @@ class GiphyLoader {
         performAsyncSearchRequest(requestURL, completionHandler: completionHandler)
     }
     
-    func performAsyncSearchRequest(requestURL: NSURL!, completionHandler: (giphyImages: [GiphyImage]) -> Void) {
+    func performAsyncSearchRequest(requestURL: NSURL!, completionHandler: (giphyImages: [GiphyImageModel]) -> Void) {
         let request = NSURLRequest(URL: requestURL)
         let session = getSessionWithDefaults()
         
@@ -93,7 +93,7 @@ class GiphyLoader {
         task.resume()
     }
     
-    private func parseSearchedData(data: NSData!) -> [GiphyImage]? {
+    private func parseSearchedData(data: NSData!) -> [GiphyImageModel]? {
         guard let data = data else {
             NSLog("parseSearchedData() received no data")
             return nil
@@ -107,21 +107,21 @@ class GiphyLoader {
             }
             
             if let dataDictionary = jsonArray["data"] as? [AnyObject] {
-                var giphyImages: [GiphyImage] = []
+                var giphyImages: [GiphyImageModel] = []
                 
                 for dataItem in dataDictionary {
                     if let images = dataItem["images"] as? [String: AnyObject],
                         thumbImageData = images["fixed_width_downsampled"] as? [String: AnyObject],
                         originalImageData = images["original"] {
-                        var giphyImage = GiphyImage()
+                        var giphyImage = GiphyImageModel()
                         
-                        giphyImage.giphyThumbImageUrl = thumbImageData["url"] as? String
-                        giphyImage.giphyThumbImageWidth = Int((thumbImageData["width"] as? String)!)
-                        giphyImage.giphyThumbImageHeight = Int((thumbImageData["height"] as? String)!)
+                        giphyImage.thumbImageUrl = thumbImageData["url"] as? String
+                        giphyImage.thumbImageWidth = Int((thumbImageData["width"] as? String)!)
+                        giphyImage.thumbImageHeight = Int((thumbImageData["height"] as? String)!)
                             
-                        giphyImage.giphyOriginalImageUrl = originalImageData["url"] as? String
-                        giphyImage.giphyOriginalImageWidth = Int((originalImageData["width"] as? String)!)
-                        giphyImage.giphyOriginalImageHeight = Int((originalImageData["height"] as? String)!)
+                        giphyImage.originalImageUrl = originalImageData["url"] as? String
+                        giphyImage.originalImageWidth = Int((originalImageData["width"] as? String)!)
+                        giphyImage.originalImageHeight = Int((originalImageData["height"] as? String)!)
                         
                         giphyImages.append(giphyImage)
                     }
@@ -136,7 +136,7 @@ class GiphyLoader {
         return nil
     }
     
-    private func parseRandomData(data: NSData!) -> GiphyImage? {
+    private func parseRandomData(data: NSData!) -> GiphyImageModel? {
         guard let data = data else {
             NSLog("parseRandomGiphyData() received no data")
             return nil
@@ -150,13 +150,13 @@ class GiphyLoader {
             }
             
             if let dataDictionary = jsonArray["data"] as? [String: AnyObject] {
-                var giphyImage = GiphyImage()
+                var giphyImageModel = GiphyImageModel()
                 
-                giphyImage.giphyOriginalImageUrl = dataDictionary["image_url"] as? String
-                giphyImage.giphyOriginalImageWidth = Int((dataDictionary["image_width"] as? String)!)
-                giphyImage.giphyOriginalImageHeight = Int((dataDictionary["image_height"] as? String)!)
+                giphyImageModel.originalImageUrl = dataDictionary["image_url"] as? String
+                giphyImageModel.originalImageWidth = Int((dataDictionary["image_width"] as? String)!)
+                giphyImageModel.originalImageHeight = Int((dataDictionary["image_height"] as? String)!)
                 
-                return giphyImage
+                return giphyImageModel
             }
         } catch let error as NSError {
             NSLog("JSON error: \(error)")

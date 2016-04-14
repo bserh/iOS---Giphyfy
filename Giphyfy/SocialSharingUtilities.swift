@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-func generateSocialSharingActionSheetFor(sender: UIViewController, withGif giphyImage: GiphyImage) -> UIAlertController {
+func generateSocialSharingActionSheetFor(sender: UIViewController, withGif giphyImage: GiphyImageModel) -> UIAlertController {
     let socialSharingActionSheet = UIAlertController(title: "Share", message: "Choose an app", preferredStyle: .ActionSheet)
     
     let facebookPostAction = UIAlertAction(title: "Share on Facebook", style: .Default) {

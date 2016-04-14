@@ -28,12 +28,9 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
     }
     
     //MARK: - Search Bar Delegate Methods
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        let searchedString = searchBar.text!
-        
-        pagingSpinner.startAnimating()
-        searchController.getGifsAsyncByKeyWord(searchedString, completionHandler: handleGiphyData)
-        searchBar.resignFirstResponder()
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "loadData", object: nil)
+        self.performSelector("loadData", withObject: nil, afterDelay: 0.75)
     }
     
     //MARK: - Table View Data Source Methods
@@ -62,7 +59,7 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
         let cellGifModel = searchController.data[indexPath.row]
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if let urlString = cellGifModel.giphyThumbImageUrl, url = NSURL(string: urlString) {
+            if let urlString = cellGifModel.thumbImageUrl, url = NSURL(string: urlString) {
                 let image = UIImage.animatedImageWithAnimatedGIFURL(url)
                 dispatch_async(dispatch_get_main_queue(), {
                     if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? GiphyImageTableViewCell {
@@ -80,8 +77,8 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
         let cellWidth = UIScreen.mainScreen().bounds.width
         
         let gifModel = searchController.data[indexPath.row]
-        let gifWidth = gifModel.giphyThumbImageWidth!
-        let gifHeight = gifModel.giphyThumbImageHeight!
+        let gifWidth = gifModel.thumbImageWidth!
+        let gifHeight = gifModel.thumbImageHeight!
         
         let scale = Double(gifWidth) / Double(gifHeight)
         let cellHeight = CGFloat(Double(cellWidth) / scale)
@@ -122,7 +119,7 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
     }
     
     //MARK: - Custom Methods
-    private func handleGiphyData(giphyModels: [GiphyImage]) {
+    private func handleGiphyData(giphyModels: [GiphyImageModel]) {
         searchController.data += giphyModels
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -130,5 +127,12 @@ class SearchGiphyImageViewController: CollectionSearchableBaseViewController, UI
             self.pagingSpinner.stopAnimating()
         }
     }
-
+    
+    @objc func loadData() {
+        let searchedString = searchBar.text!
+        
+        pagingSpinner.startAnimating()
+        searchController.getGifsAsyncByKeyWord(searchedString, completionHandler: handleGiphyData)
+        searchBar.resignFirstResponder()
+    }
 }

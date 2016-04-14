@@ -19,7 +19,7 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     
-    var gifModel: GiphyImage?
+    var gifModel: GiphyImageModel?
     private var lastZoomScale: CGFloat = -1
     
     //MARK: - Overrided Methods
@@ -33,7 +33,7 @@ class PresentFullSizeGifViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let urlString = self.gifModel!.giphyOriginalImageUrl
+        let urlString = self.gifModel!.originalImageUrl
         let url = NSURL(string: urlString!)
         let image = UIImage.animatedImageWithAnimatedGIFURL(url)
         imageView.image = image

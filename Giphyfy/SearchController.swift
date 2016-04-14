@@ -11,7 +11,7 @@ import Foundation
 class SearchController {
     private let giphyLoader: GiphyLoader
     
-    var data: [GiphyImage] = []
+    var data: [GiphyImageModel] = []
     var searchQueryState = ""
     
     init() {
@@ -22,12 +22,12 @@ class SearchController {
         self.giphyLoader = GiphyLoader(pagingModel: pagingModel)
     }
     
-    func getStickersAsyncByKeyWord(keyWord: String, completionHandler: ([GiphyImage]) -> Void) {
+    func getStickersAsyncByKeyWord(keyWord: String, completionHandler: ([GiphyImageModel]) -> Void) {
         prepareDataForSpecifiedQueryState(keyWord)
         giphyLoader.searchAsyncStickers(queryString: keyWord, completionHandler: completionHandler)
     }
     
-    func getGifsAsyncByKeyWord(keyWord: String, completionHandler: ([GiphyImage]) -> Void) {
+    func getGifsAsyncByKeyWord(keyWord: String, completionHandler: ([GiphyImageModel]) -> Void) {
         prepareDataForSpecifiedQueryState(keyWord)
         giphyLoader.searchAsyncGifs(queryString: keyWord, completionHandler: completionHandler)
     }

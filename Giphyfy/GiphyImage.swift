@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct GiphyImage {
-    var giphyThumbImageUrl: String?
-    var giphyThumbImageWidth: Int?
-    var giphyThumbImageHeight: Int?
+struct GiphyImageModel {
+    var thumbImageUrl: String?
+    var thumbImageWidth: Int?
+    var thumbImageHeight: Int?
     
-    var giphyOriginalImageUrl: String?
-    var giphyOriginalImageWidth: Int?
-    var giphyOriginalImageHeight: Int?
+    var originalImageUrl: String?
+    var originalImageWidth: Int?
+    var originalImageHeight: Int?
 }

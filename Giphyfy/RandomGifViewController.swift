@@ -13,7 +13,7 @@ class RandomGifViewController: UIViewController {
     @IBOutlet weak var randomGifImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private var gifModel: GiphyImage?
+    private var gifModel: GiphyImageModel?
     private let giphyLoader = GiphyLoader()
 
     //MARK: - Overrided Methods
@@ -36,7 +36,7 @@ class RandomGifViewController: UIViewController {
     }
     
     //MARK: - Custom Methods
-    private func handleRandomGiphyData(giphyImage: GiphyImage) {
+    private func handleRandomGiphyData(giphyImage: GiphyImageModel) {
         self.gifModel = giphyImage
         renderGifImage()
     }
@@ -47,7 +47,7 @@ class RandomGifViewController: UIViewController {
     }
     
     private func renderGifImage() {
-        if let urlString = gifModel!.giphyOriginalImageUrl, url = NSURL(string: urlString) {
+        if let urlString = gifModel!.originalImageUrl, url = NSURL(string: urlString) {
             let temporaryImage = UIImage.animatedImageWithAnimatedGIFURL(url)
             dispatch_async(dispatch_get_main_queue()) {
                 self.randomGifImageView.image = temporaryImage

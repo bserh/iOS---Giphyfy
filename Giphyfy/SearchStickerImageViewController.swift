@@ -57,7 +57,7 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
         cell.loadingIndicator.startAnimating()
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if let urlString = cellGifModel.giphyThumbImageUrl, url = NSURL(string: urlString) {
+            if let urlString = cellGifModel.thumbImageUrl, url = NSURL(string: urlString) {
                 let image = UIImage.animatedImageWithAnimatedGIFURL(url)
                 dispatch_async(dispatch_get_main_queue(), {
                     if let cellToUpdate = collectionView.cellForItemAtIndexPath(indexPath) as? StickerImageCollectionViewCell {
@@ -76,8 +76,8 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
         let cellWidth = (UIScreen.mainScreen().bounds.width / 2) - 5
         
         let gifModel = searchController.data[indexPath.row]
-        let gifWidth = gifModel.giphyThumbImageWidth!
-        let gifHeight = gifModel.giphyThumbImageHeight!
+        let gifWidth = gifModel.thumbImageWidth!
+        let gifHeight = gifModel.thumbImageHeight!
         
         let scale = Double(gifWidth) / Double(gifHeight)
         let cellHeight = CGFloat(Double(cellWidth) / scale)
@@ -97,11 +97,9 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
     }
     
     //MARK: - Search Bar Delegate Methods
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        let searchedString = searchBar.text!
-        
-        searchController.getStickersAsyncByKeyWord(searchedString, completionHandler: handleGiphyData)
-        searchBar.resignFirstResponder()
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "loadData", object: nil)
+        self.performSelector("loadData", withObject: nil, afterDelay: 0.75)
     }
     
     //MARK: - Navigation
@@ -118,11 +116,18 @@ class SearchStickerImageViewController: CollectionSearchableBaseViewController, 
     }
     
     //Custom Methods
-    private func handleGiphyData(giphyModels: [GiphyImage]) {
+    private func handleGiphyData(giphyModels: [GiphyImageModel]) {
         searchController.data += giphyModels
         
         dispatch_async(dispatch_get_main_queue()) {
             self.collectionView.reloadData()
         }
+    }
+    
+    @objc private func loadData() {
+        let searchedString = searchBar.text!
+        
+        searchController.getStickersAsyncByKeyWord(searchedString, completionHandler: handleGiphyData)
+        searchBar.resignFirstResponder()
     }
 }

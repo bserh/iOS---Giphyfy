@@ -17,7 +17,7 @@ class SocialNetworkAPIBase {
         self.serviceType = serviceType
     }
     
-    func postToSocialFrom(sender: UIViewController, withGif gif: GiphyImage) {
+    func postToSocialFrom(sender: UIViewController, withGif gif: GiphyImageModel) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
             if SLComposeViewController.isAvailableForServiceType(self.serviceType) {
                 let socialVC = SLComposeViewController(forServiceType: self.serviceType)
@@ -50,11 +50,11 @@ class SocialNetworkAPIBase {
         }
     }
     
-    private func convertGiphyImageToSocialMessagePost(giphyImage: GiphyImage) -> SocialMessage {
+    private func convertGiphyImageToSocialMessagePost(giphyImage: GiphyImageModel) -> SocialMessage {
         var message = SocialMessage()
         
         message.initialText = "Here is the shared gif from #Giphyfy iOS app"
-        if let GIFURLString = giphyImage.giphyOriginalImageUrl, GIFURL = NSURL(string: GIFURLString),
+        if let GIFURLString = giphyImage.originalImageUrl, GIFURL = NSURL(string: GIFURLString),
             image = UIImage.animatedImageWithAnimatedGIFURL(GIFURL) {
             message.image = image
             message.url = GIFURLString
